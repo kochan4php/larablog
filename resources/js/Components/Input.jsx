@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
-export default function Input({
-    type = 'text',
+const Input = ({
+    type = "text",
     name,
     value,
     className,
@@ -9,13 +9,11 @@ export default function Input({
     required,
     isFocused,
     handleChange,
-}) {
+}) => {
     const input = useRef();
 
     useEffect(() => {
-        if (isFocused) {
-            input.current.focus();
-        }
+        if (isFocused) input.current.focus();
     }, []);
 
     return (
@@ -35,4 +33,6 @@ export default function Input({
             />
         </div>
     );
-}
+};
+
+export default Input;

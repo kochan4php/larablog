@@ -1,75 +1,78 @@
+import { RenderIfFalse, RenderIfTrue } from "@/utils";
 import { Link } from "@inertiajs/inertia-react";
+import ApplicationLogo from "./ApplicationLogo";
 
-export default function Navbar(props) {
-    return (
-        <div class="navbar bg-slate-900 text-slate-100">
-            <div class="flex-1">
-                <a class="btn btn-ghost normal-case text-xl">Larablog</a>
+const Logo = () => (
+    <div className="text-2xl flex gap-3 items-center">
+        <ApplicationLogo className="block h-9 w-auto fill-current" />
+        <Link href="/">Larablog</Link>
+    </div>
+);
+
+const Hamburger = () => (
+    <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="inline-block w-9 h-9 stroke-current"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+        </svg>
+    </label>
+);
+
+const Dropdown = (props) => (
+    <div className="dropdown dropdown-end">
+        <Hamburger />
+        <ul
+            tabindex="0"
+            className="mt-3 p-2 shadow menu menu-compact dropdown-content text-white bg-danger rounded-md w-52"
+        >
+            <RenderIfTrue isTrue={props.data.auth.user}>
+                <li>
+                    <Link href={route("dashboard")} className="text-base">
+                        Dashboard
+                    </Link>
+                </li>
+                <li>
+                    <Link href={route("logout")} className="text-base">
+                        Log Out
+                    </Link>
+                </li>
+            </RenderIfTrue>
+            <RenderIfFalse isFalse={props.data.auth.user}>
+                <li>
+                    <Link href={route("login")} className="text-base">
+                        Log in
+                    </Link>
+                </li>
+                <li>
+                    <Link href={route("register")} className="text-base">
+                        Register
+                    </Link>
+                </li>
+            </RenderIfFalse>
+        </ul>
+    </div>
+);
+
+const Navbar = (props) => (
+    <nav className="navbar text-white bg-danger">
+        <div className="container">
+            <div className="flex-1">
+                <Logo />
             </div>
-            <div class="flex-none gap-2">
-                <div class="dropdown dropdown-end">
-                    <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            class="inline-block w-8 h-8 stroke-current"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"
-                            ></path>
-                        </svg>
-                    </label>
-                    <ul
-                        tabindex="0"
-                        class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-slate-800 text-white rounded-md w-52"
-                    >
-                        {props.data.auth.user ? (
-                            <>
-                                <li>
-                                    <Link
-                                        href={route("dashboard")}
-                                        className="text-base"
-                                    >
-                                        Dashboard
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        href={route("logout")}
-                                        className="text-base"
-                                    >
-                                        Log Out
-                                    </Link>
-                                </li>
-                            </>
-                        ) : (
-                            <>
-                                <li>
-                                    <Link
-                                        href={route("login")}
-                                        className="text-base"
-                                    >
-                                        Log in
-                                    </Link>
-                                </li>
-
-                                <li>
-                                    <Link
-                                        href={route("register")}
-                                        className="text-base"
-                                    >
-                                        Register
-                                    </Link>
-                                </li>
-                            </>
-                        )}
-                    </ul>
-                </div>
+            <div className="">
+                <Dropdown data={props.data} />
             </div>
         </div>
-    );
-}
+    </nav>
+);
+
+export default Navbar;

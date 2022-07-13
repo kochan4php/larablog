@@ -1,11 +1,12 @@
-import React, { useState } from "react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+import { RenderIfTrue } from "@/utils";
 import { Link } from "@inertiajs/inertia-react";
+import { useState } from "react";
 
-export default function Authenticated({ auth, header, children }) {
+const Authenticated = ({ auth, header, children }) => {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
@@ -20,7 +21,7 @@ export default function Authenticated({ auth, header, children }) {
                                     <ApplicationLogo className="block h-9 w-auto text-gray-500" />
                                 </Link>
                             </div>
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div className="hidden space-x-8 md:-my-px md:ml-10 md:flex">
                                 <NavLink
                                     href={route("dashboard")}
                                     active={route().current("dashboard")}
@@ -28,14 +29,19 @@ export default function Authenticated({ auth, header, children }) {
                                     Dashboard
                                 </NavLink>
                             </div>
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <div className="hidden space-x-8 md:-my-px md:ml-10 md:flex">
                                 <NavLink href="/dashboard/posts">
                                     My Posts
                                 </NavLink>
                             </div>
+                            <div className="hidden space-x-8 md:-my-px md:ml-10 md:flex">
+                                <NavLink href="/dashboard/profile">
+                                    My Profile
+                                </NavLink>
+                            </div>
                         </div>
 
-                        <div className="hidden sm:flex sm:items-center sm:ml-6">
+                        <div className="hidden md:flex md:items-center md:ml-6">
                             <div className="ml-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -121,7 +127,7 @@ export default function Authenticated({ auth, header, children }) {
                 <div
                     className={
                         (showingNavigationDropdown ? "block" : "hidden") +
-                        " sm:hidden"
+                        " md:hidden"
                     }
                 >
                     <div className="pt-2 pb-3 space-y-1">
@@ -130,6 +136,12 @@ export default function Authenticated({ auth, header, children }) {
                             active={route().current("dashboard")}
                         >
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={"/dashboard/posts"}>
+                            My Posts
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={"/dashboard/profile"}>
+                            My Profile
                         </ResponsiveNavLink>
                     </div>
 
@@ -156,15 +168,17 @@ export default function Authenticated({ auth, header, children }) {
                 </div>
             </nav>
 
-            {header && (
+            <RenderIfTrue isTrue={header}>
                 <header className="bg-white shadow">
                     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {header}
                     </div>
                 </header>
-            )}
+            </RenderIfTrue>
 
             <main>{children}</main>
         </div>
     );
-}
+};
+
+export default Authenticated;

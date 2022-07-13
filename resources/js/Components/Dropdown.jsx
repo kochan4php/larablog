@@ -1,15 +1,13 @@
-import React, { useState, useContext, Fragment } from "react";
-import { Link } from "@inertiajs/inertia-react";
+import { RenderIfTrue } from "@/utils";
 import { Transition } from "@headlessui/react";
+import { Link } from "@inertiajs/inertia-react";
+import { createContext, Fragment, useContext, useState } from "react";
 
-const DropDownContext = React.createContext();
+const DropDownContext = createContext();
 
 const Dropdown = ({ children }) => {
     const [open, setOpen] = useState(false);
-
-    const toggleOpen = () => {
-        setOpen((previousState) => !previousState);
-    };
+    const toggleOpen = () => setOpen((previousState) => !previousState);
 
     return (
         <DropDownContext.Provider value={{ open, setOpen, toggleOpen }}>
@@ -24,13 +22,12 @@ const Trigger = ({ children }) => {
     return (
         <>
             <div onClick={toggleOpen}>{children}</div>
-
-            {open && (
+            <RenderIfTrue isTrue={open}>
                 <div
                     className="fixed inset-0 z-40"
                     onClick={() => setOpen(false)}
                 ></div>
-            )}
+            </RenderIfTrue>
         </>
     );
 };
@@ -44,18 +41,11 @@ const Content = ({
     const { open, setOpen } = useContext(DropDownContext);
 
     let alignmentClasses = "origin-top";
-
-    if (align === "left") {
-        alignmentClasses = "origin-top-left left-0";
-    } else if (align === "right") {
-        alignmentClasses = "origin-top-right right-0";
-    }
+    if (align === "left") alignmentClasses = "origin-top-left left-0";
+    else if (align === "right") alignmentClasses = "origin-top-right right-0";
 
     let widthClasses = "";
-
-    if (width === "48") {
-        widthClasses = "w-48";
-    }
+    if (width === "48") widthClasses = "w-48";
 
     return (
         <>
@@ -74,10 +64,7 @@ const Content = ({
                     onClick={() => setOpen(false)}
                 >
                     <div
-                        className={
-                            `rounded-md ring-1 ring-black ring-opacity-5 ` +
-                            contentClasses
-                        }
+                        className={`rounded-md ring-1 ring-black ring-opacity-5 ${contentClasses}`}
                     >
                         {children}
                     </div>
@@ -87,18 +74,16 @@ const Content = ({
     );
 };
 
-const DropdownLink = ({ href, method = "post", as = "a", children }) => {
-    return (
-        <Link
-            href={href}
-            method={method}
-            as={as}
-            className="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
-        >
-            {children}
-        </Link>
-    );
-};
+const DropdownLink = ({ href, method = "post", as = "a", children }) => (
+    <Link
+        href={href}
+        method={method}
+        as={as}
+        className="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+    >
+        {children}
+    </Link>
+);
 
 Dropdown.Trigger = Trigger;
 Dropdown.Content = Content;
