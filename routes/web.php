@@ -15,17 +15,57 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+$posts = collect([
+    [
+        'title' => 'Lorem Ipsum',
+        'slug' => 'lorem-ipsum-1',
+        'user_id' => 1,
+        'category_id' => 1,
+        'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ullam iusto harum ratione, sint voluptatem nulla aliquid excepturi architecto adipisci.',
+        'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus corrupti reiciendis illo vero fugit fuga eum natus harum explicabo nulla veritatis vel in repellat eaque ullam cupiditate dicta, minus recusandae repudiandae eius quo veniam sed! Esse eveniet, ad ipsa sapiente eum nobis reprehenderit mollitia consequatur sed explicabo delectus atque inventore amet dolor quibusdam ipsam necessitatibus eligendi. Id ipsa earum quia, ratione impedit ea molestiae temporibus ipsam perspiciatis quasi aspernatur, eligendi, molestias veritatis eius hic mollitia beatae ab rem consequuntur. Esse repellat dolorum, accusantium, atque culpa doloremque et dolorem dignissimos sed hic ipsum sint alias sapiente architecto officia similique quia asperiores!'
+    ],
+    [
+        'title' => 'Lorem Ipsum',
+        'slug' => 'lorem-ipsum-2',
+        'user_id' => 1,
+        'category_id' => 1,
+        'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ullam iusto harum ratione, sint voluptatem nulla aliquid excepturi architecto adipisci.',
+        'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus corrupti reiciendis illo vero fugit fuga eum natus harum explicabo nulla veritatis vel in repellat eaque ullam cupiditate dicta, minus recusandae repudiandae eius quo veniam sed! Esse eveniet, ad ipsa sapiente eum nobis reprehenderit mollitia consequatur sed explicabo delectus atque inventore amet dolor quibusdam ipsam necessitatibus eligendi. Id ipsa earum quia, ratione impedit ea molestiae temporibus ipsam perspiciatis quasi aspernatur, eligendi, molestias veritatis eius hic mollitia beatae ab rem consequuntur. Esse repellat dolorum, accusantium, atque culpa doloremque et dolorem dignissimos sed hic ipsum sint alias sapiente architecto officia similique quia asperiores!'
+    ],
+    [
+        'title' => 'Lorem Ipsum',
+        'slug' => 'lorem-ipsum-3',
+        'user_id' => 1,
+        'category_id' => 1,
+        'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ullam iusto harum ratione, sint voluptatem nulla aliquid excepturi architecto adipisci.',
+        'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus corrupti reiciendis illo vero fugit fuga eum natus harum explicabo nulla veritatis vel in repellat eaque ullam cupiditate dicta, minus recusandae repudiandae eius quo veniam sed! Esse eveniet, ad ipsa sapiente eum nobis reprehenderit mollitia consequatur sed explicabo delectus atque inventore amet dolor quibusdam ipsam necessitatibus eligendi. Id ipsa earum quia, ratione impedit ea molestiae temporibus ipsam perspiciatis quasi aspernatur, eligendi, molestias veritatis eius hic mollitia beatae ab rem consequuntur. Esse repellat dolorum, accusantium, atque culpa doloremque et dolorem dignissimos sed hic ipsum sint alias sapiente architecto officia similique quia asperiores!'
+    ],
+    [
+        'title' => 'Lorem Ipsum',
+        'slug' => 'lorem-ipsum-4',
+        'user_id' => 1,
+        'category_id' => 1,
+        'excerpt' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ullam iusto harum ratione, sint voluptatem nulla aliquid excepturi architecto adipisci.',
+        'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus corrupti reiciendis illo vero fugit fuga eum natus harum explicabo nulla veritatis vel in repellat eaque ullam cupiditate dicta, minus recusandae repudiandae eius quo veniam sed! Esse eveniet, ad ipsa sapiente eum nobis reprehenderit mollitia consequatur sed explicabo delectus atque inventore amet dolor quibusdam ipsam necessitatibus eligendi. Id ipsa earum quia, ratione impedit ea molestiae temporibus ipsam perspiciatis quasi aspernatur, eligendi, molestias veritatis eius hic mollitia beatae ab rem consequuntur. Esse repellat dolorum, accusantium, atque culpa doloremque et dolorem dignissimos sed hic ipsum sint alias sapiente architecto officia similique quia asperiores!'
+    ],
+]);
+
+Route::get('/', function () use ($posts) {
+    return Inertia::render('Articles/index', [
+        'posts' => $posts
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/article/{article}', function ($article) {
+    return Inertia::render('Articles/Article');
+})->name('article.detail');
+
+Route::middleware(['auth', 'verified'])->group(function () use ($posts) {
+    Route::get('/dashboard', function () use ($posts) {
+        return Inertia::render('Dashboard/index', [
+            'posts' => $posts
+        ]);
+    })->name('dashboard');
+});
 
 require __DIR__ . '/auth.php';

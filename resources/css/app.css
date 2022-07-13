@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    font-family: "Nunito", Arial, Helvetica, sans-serif !important;
+  }
+
+  body {
+    @apply bg-gradient-to-tl from-slate-900 via-slate-800 to-slate-900 min-h-screen text-white;
+  }
+}
