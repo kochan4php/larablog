@@ -1,9 +1,12 @@
 import { Link } from "@inertiajs/inertia-react";
 
 const Card = (props) => {
-  console.log("props card: ", props);
+  const author = props.authors.find(
+    (author) => author.id === props.article.user_id
+  );
+
   return (
-    <div class="card glass rounded-md">
+    <div className="card glass rounded-md">
       <figure>
         <img
           src="https://placeimg.com/400/225/arch"
@@ -12,11 +15,19 @@ const Card = (props) => {
           className="object-cover"
         />
       </figure>
-      <div class="card-body">
-        <h2 class="card-title">{props.data.title}</h2>
-        <p>{props.data.excerpt}</p>
-        <div class="card-actions justify-start">
-          <Link className="underline" href={`/articles/${props.data.slug}`}>
+      <div className="card-body">
+        <h2 className="card-title !font-lexend text-2xl mb-2">
+          {props.article.title}
+        </h2>
+        <div className="badge badge-primary !font-lexend text-base mb-2">
+          Oleh {author.name}
+        </div>
+        <p className="!font-lexend">{props.article.excerpt}</p>
+        <div className="card-actions justify-start mt-3">
+          <Link
+            className="underline !font-lexend"
+            href={`/articles/${props.article.slug}`}
+          >
             Read More
           </Link>
         </div>

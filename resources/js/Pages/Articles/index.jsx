@@ -6,7 +6,10 @@ import { Link } from "@inertiajs/inertia-react";
 import { Fragment } from "react";
 
 const Index = (props) => {
-  const { articles } = props;
+  const { articles, authors } = props;
+  const authorForFirstArticle = authors.find(
+    (author) => author.id === articles?.data[0]?.user_id
+  );
 
   return (
     <Main title="Home" data={props}>
@@ -33,11 +36,14 @@ const Index = (props) => {
                 </figure>
                 <div className="card-body">
                   <h2 className="card-title">{articles?.data[0]?.title}</h2>
+                  <div className="badge badge-primary !font-lexend text-base mb-2">
+                    Oleh {authorForFirstArticle.name}
+                  </div>
                   <p>{articles?.data[0]?.excerpt}</p>
-                  <div className="card-actions justify-end mt-4">
+                  <div className="card-actions justify-start mt-4">
                     <Link
                       href={`/articles/${articles?.data[0]?.slug}`}
-                      className="btn glass btn-sm rounded"
+                      className="btn btn-primary btn-sm rounded"
                     >
                       Read More
                     </Link>
@@ -49,7 +55,7 @@ const Index = (props) => {
               each={articles?.data?.slice(1)}
               render={(data, index) => (
                 <Fragment key={index}>
-                  <Card data={data} />
+                  <Card article={data} authors={authors} />
                 </Fragment>
               )}
             />

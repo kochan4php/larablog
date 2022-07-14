@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
@@ -10,8 +11,10 @@ class ArticleController extends Controller
 {
     public function index()
     {
+        $articles = Article::paginate(8);
         return Inertia::render('Articles/index', [
-            'articles' => Article::paginate(8)
+            'articles' => $articles,
+            'authors' => User::all()
         ]);
     }
 
@@ -19,6 +22,7 @@ class ArticleController extends Controller
     {
         return Inertia::render('Articles/Article', [
             'article' => $article,
+            'author' => $article->user
         ]);
     }
 }

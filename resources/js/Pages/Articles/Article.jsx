@@ -2,7 +2,9 @@ import Main from "@/Layouts/Main";
 import { Link } from "@inertiajs/inertia-react";
 
 const Article = (props) => {
-  const { article } = props;
+  const { article, author } = props;
+  console.log("props article : ", props);
+  const back = () => window.history.back();
   return (
     <Main data={props} title="Detail Article">
       <section className="pt-6 pb-10">
@@ -12,6 +14,11 @@ const Article = (props) => {
               <h2 className="text-4xl md:text-5xl font-medium text-center">
                 {article.title}
               </h2>
+            </div>
+            <div className="mb-7">
+              <p className="text-lg md:text-xl font-medium text-center">
+                Ditulis oleh <Link>{author.name}</Link>
+              </p>
             </div>
             <div className="mb-7 rounded overflow-hidden">
               <img
@@ -29,7 +36,7 @@ const Article = (props) => {
               />
             </div>
             <div className="mb-6">
-              <Link href="/" className="underline text-lg">
+              <Link as="button" onClick={back} className="underline text-lg">
                 &laquo; Back
               </Link>
             </div>

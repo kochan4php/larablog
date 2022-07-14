@@ -15,13 +15,14 @@ createInertiaApp({
       `./Pages/${name}.jsx`,
       import.meta.glob("./Pages/**/*.jsx")
     ),
-  setup: ({ el, App, props }) =>
-    render(
+  setup({ el, App, props }) {
+    return render(
       <RecoilRoot>
         <App {...props} />
       </RecoilRoot>,
       el
-    ),
+    );
+  },
 });
 
 InertiaProgress.init({ color: "#4B5563" });
