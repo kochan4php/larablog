@@ -9,6 +9,7 @@ const Input = ({
   required,
   isFocused,
   handleChange,
+  placeholder,
 }) => {
   const input = useRef();
 
@@ -17,21 +18,17 @@ const Input = ({
   }, []);
 
   return (
-    <div className="flex flex-col items-start">
-      <input
-        type={type}
-        name={name}
-        value={value}
-        className={
-          `border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ` +
-          className
-        }
-        ref={input}
-        autoComplete={autoComplete}
-        required={required}
-        onChange={(e) => handleChange(e)}
-      />
-    </div>
+    <input
+      className={`search-input truncate outline-none px-4 py-1.5 rounded-sm bg-gray-900 text-base md:text-lg ring-2 focus:ring-4 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0 ${className}`}
+      type={type}
+      name={name}
+      value={value}
+      ref={input}
+      autoComplete={autoComplete}
+      required={required}
+      onChange={(e) => handleChange(e)}
+      placeholder={placeholder}
+    />
   );
 };
 

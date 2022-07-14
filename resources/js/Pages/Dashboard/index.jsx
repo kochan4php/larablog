@@ -1,13 +1,9 @@
 import Authenticated from "@/Layouts/Authenticated";
 import { Head } from "@inertiajs/inertia-react";
 
-const Header = () => (
-  <h2 className="font-semibold text-xl leading-tight">My Posts</h2>
-);
-
 const Index = (props) => {
   return (
-    <Authenticated auth={props.auth} errors={props.errors} header={<Header />}>
+    <Authenticated auth={props.auth} errors={props.errors}>
       <Head title="Dashboard" />
       <div className="py-6">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,9 +16,9 @@ use Inertia\Inertia;
 |
 */
 
-$posts = collect([
+$articles = collect([
     [
-        'title' => 'Lorem Ipsum',
+        'title' => 'Lorem Ipsum Pertama',
         'slug' => 'lorem-ipsum-1',
         'user_id' => 1,
         'category_id' => 1,
@@ -25,7 +26,7 @@ $posts = collect([
         'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus corrupti reiciendis illo vero fugit fuga eum natus harum explicabo nulla veritatis vel in repellat eaque ullam cupiditate dicta, minus recusandae repudiandae eius quo veniam sed! Esse eveniet, ad ipsa sapiente eum nobis reprehenderit mollitia consequatur sed explicabo delectus atque inventore amet dolor quibusdam ipsam necessitatibus eligendi. Id ipsa earum quia, ratione impedit ea molestiae temporibus ipsam perspiciatis quasi aspernatur, eligendi, molestias veritatis eius hic mollitia beatae ab rem consequuntur. Esse repellat dolorum, accusantium, atque culpa doloremque et dolorem dignissimos sed hic ipsum sint alias sapiente architecto officia similique quia asperiores!'
     ],
     [
-        'title' => 'Lorem Ipsum',
+        'title' => 'Lorem Ipsum Kedua',
         'slug' => 'lorem-ipsum-2',
         'user_id' => 1,
         'category_id' => 1,
@@ -33,7 +34,7 @@ $posts = collect([
         'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus corrupti reiciendis illo vero fugit fuga eum natus harum explicabo nulla veritatis vel in repellat eaque ullam cupiditate dicta, minus recusandae repudiandae eius quo veniam sed! Esse eveniet, ad ipsa sapiente eum nobis reprehenderit mollitia consequatur sed explicabo delectus atque inventore amet dolor quibusdam ipsam necessitatibus eligendi. Id ipsa earum quia, ratione impedit ea molestiae temporibus ipsam perspiciatis quasi aspernatur, eligendi, molestias veritatis eius hic mollitia beatae ab rem consequuntur. Esse repellat dolorum, accusantium, atque culpa doloremque et dolorem dignissimos sed hic ipsum sint alias sapiente architecto officia similique quia asperiores!'
     ],
     [
-        'title' => 'Lorem Ipsum',
+        'title' => 'Lorem Ipsum Ketiga',
         'slug' => 'lorem-ipsum-3',
         'user_id' => 1,
         'category_id' => 1,
@@ -41,7 +42,7 @@ $posts = collect([
         'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus corrupti reiciendis illo vero fugit fuga eum natus harum explicabo nulla veritatis vel in repellat eaque ullam cupiditate dicta, minus recusandae repudiandae eius quo veniam sed! Esse eveniet, ad ipsa sapiente eum nobis reprehenderit mollitia consequatur sed explicabo delectus atque inventore amet dolor quibusdam ipsam necessitatibus eligendi. Id ipsa earum quia, ratione impedit ea molestiae temporibus ipsam perspiciatis quasi aspernatur, eligendi, molestias veritatis eius hic mollitia beatae ab rem consequuntur. Esse repellat dolorum, accusantium, atque culpa doloremque et dolorem dignissimos sed hic ipsum sint alias sapiente architecto officia similique quia asperiores!'
     ],
     [
-        'title' => 'Lorem Ipsum',
+        'title' => 'Lorem Ipsum Empat',
         'slug' => 'lorem-ipsum-4',
         'user_id' => 1,
         'category_id' => 1,
@@ -50,20 +51,13 @@ $posts = collect([
     ],
 ]);
 
-Route::get('/', function () use ($posts) {
-    return Inertia::render('Articles/index', [
-        'posts' => $posts
-    ]);
-});
+Route::get('/', [ArticleController::class, 'index']);
+Route::get('/article/{article}', [ArticleController::class, 'show'])->name('article.detail');
 
-Route::get('/article/{article}', function ($article) {
-    return Inertia::render('Articles/Article');
-})->name('article.detail');
-
-Route::middleware(['auth', 'verified'])->group(function () use ($posts) {
-    Route::get('/dashboard', function () use ($posts) {
+Route::middleware(['auth', 'verified'])->group(function () use ($articles) {
+    Route::get('/dashboard', function () use ($articles) {
         return Inertia::render('Dashboard/index', [
-            'posts' => $posts
+            'posts' => $articles
         ]);
     })->name('dashboard');
 });

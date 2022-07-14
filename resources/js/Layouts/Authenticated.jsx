@@ -25,11 +25,8 @@ const Authenticated = ({ auth, children }) => {
                   href={route("dashboard")}
                   active={route().current("dashboard")}
                 >
-                  Dashboard
+                  My Posts
                 </NavLink>
-              </div>
-              <div className="hidden space-x-8 md:-my-px md:ml-10 md:flex">
-                <NavLink href="/dashboard/posts">My Posts</NavLink>
               </div>
               <div className="hidden space-x-8 md:-my-px md:ml-10 md:flex">
                 <NavLink href="/dashboard/profile">My Profile</NavLink>
@@ -120,9 +117,6 @@ const Authenticated = ({ auth, children }) => {
               href={route("dashboard")}
               active={route().current("dashboard")}
             >
-              Dashboard
-            </ResponsiveNavLink>
-            <ResponsiveNavLink href={"/dashboard/posts"}>
               My Posts
             </ResponsiveNavLink>
             <ResponsiveNavLink href={"/dashboard/profile"}>
@@ -134,6 +128,7 @@ const Authenticated = ({ auth, children }) => {
           </div>
         </div>
       </nav>
+
       <main>{children}</main>
     </div>
   );
