@@ -6,17 +6,22 @@ import { render } from "react-dom";
 import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+import { RecoilRoot } from "recoil";
 
 createInertiaApp({
-  title: (title) => `${title}`,
+  title: (title) => `${title} - Larablog`,
   resolve: (name) =>
     resolvePageComponent(
       `./Pages/${name}.jsx`,
       import.meta.glob("./Pages/**/*.jsx")
     ),
-  setup({ el, App, props }) {
-    return render(<App {...props} />, el);
-  },
+  setup: ({ el, App, props }) =>
+    render(
+      <RecoilRoot>
+        <App {...props} />
+      </RecoilRoot>,
+      el
+    ),
 });
 
 InertiaProgress.init({ color: "#4B5563" });

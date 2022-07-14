@@ -22,6 +22,8 @@
         "vite": "^2.9.11"
     },
     "dependencies": {
-        "daisyui": "^2.19.0"
+        "daisyui": "^2.19.0",
+        "recoil": "^0.7.4",
+        "recoil-persist": "^4.2.0"
     }
 }

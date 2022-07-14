@@ -52,7 +52,7 @@ $articles = collect([
 ]);
 
 Route::get('/', [ArticleController::class, 'index']);
-Route::get('/article/{article}', [ArticleController::class, 'show'])->name('article.detail');
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('article.detail');
 
 Route::middleware(['auth', 'verified'])->group(function () use ($articles) {
     Route::get('/dashboard', function () use ($articles) {

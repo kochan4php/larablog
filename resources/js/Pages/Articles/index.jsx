@@ -1,5 +1,4 @@
 import Card from "@/Components/Card";
-import Input from "@/Components/Input";
 import Paginate from "@/Components/Paginate";
 import Main from "@/Layouts/Main";
 import { For } from "@/utils";
@@ -7,8 +6,8 @@ import { Link } from "@inertiajs/inertia-react";
 import { Fragment } from "react";
 
 const Index = (props) => {
-  console.log(props);
   const { articles } = props;
+
   return (
     <Main title="Home" data={props}>
       <section className="pt-6 pb-10">

@@ -16,7 +16,7 @@ const Card = (props) => {
         <h2 class="card-title">{props.data.title}</h2>
         <p>{props.data.excerpt}</p>
         <div class="card-actions justify-start">
-          <Link className="underline" href={`/article/${props.data.slug}`}>
+          <Link className="underline" href={`/articles/${props.data.slug}`}>
             Read More
           </Link>
         </div>
