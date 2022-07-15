@@ -9,7 +9,7 @@ const Article = (props) => {
     <Main data={props} title="Detail Article">
       <section className="pt-6 pb-10">
         <div className="container">
-          <div className="w-full lg:max-w-4xl mx-auto p-2">
+          <div className="w-full lg:max-w-3xl mx-auto p-2">
             <div className="mb-7">
               <h2 className="text-4xl md:text-5xl font-medium text-center">
                 {article.title}
@@ -30,9 +30,9 @@ const Article = (props) => {
             </div>
             <div className="mb-7 leading-loose">
               <p
-                className="text-base md:text-lg lg:text-xl"
+                className="text-base md:text-lg font-medium text-gray-900"
                 dangerouslySetInnerHTML={{ __html: article.content }}
-                style={{ lineHeight: "2.2rem" }}
+                style={{ lineHeight: "1.8rem" }}
               />
             </div>
             <div className="mb-6">

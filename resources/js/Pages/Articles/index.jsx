@@ -20,12 +20,12 @@ const Index = (props) => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
             <div
-              className="card md:card-side shadow-xl md:col-span-2 glass rounded-md bg-no-repeat bg-cover bg-center"
+              className="card md:card-side shadow-lg md:col-span-2 rounded-md bg-no-repeat bg-cover bg-center"
               style={{
                 backgroundImage: "url(https://placeimg.com/400/225/arch)",
               }}
             >
-              <div className="bg-slate-800 w-full bg-opacity-70 backdrop-blur-lg">
+              <div className="bg-slate-100 w-full">
                 <figure>
                   <img
                     src="https://placeimg.com/400/925/arch"
@@ -35,11 +35,13 @@ const Index = (props) => {
                   />
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title">{articles?.data[0]?.title}</h2>
+                  <h2 className="card-title text-2xl mb-2">
+                    {articles?.data[0]?.title}
+                  </h2>
                   <div className="badge badge-primary !font-lexend text-base mb-2">
                     Oleh {authorForFirstArticle.name}
                   </div>
-                  <p>{articles?.data[0]?.excerpt}</p>
+                  <p className="text-lg">{articles?.data[0]?.excerpt}</p>
                   <div className="card-actions justify-start mt-4">
                     <Link
                       href={`/articles/${articles?.data[0]?.slug}`}

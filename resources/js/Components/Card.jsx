@@ -6,7 +6,7 @@ const Card = (props) => {
   );
 
   return (
-    <div className="card glass rounded-md">
+    <div className="card glass rounded-md shadow-lg hover:shadow-lg shadow-slate-300">
       <figure>
         <img
           src="https://placeimg.com/400/225/arch"
@@ -16,18 +16,13 @@ const Card = (props) => {
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title !font-lexend text-2xl mb-2">
-          {props.article.title}
-        </h2>
+        <h2 className="card-title text-2xl mb-2">{props.article.title}</h2>
         <div className="badge badge-primary !font-lexend text-base mb-2">
           Oleh {author.name}
         </div>
-        <p className="!font-lexend">{props.article.excerpt}</p>
-        <div className="card-actions justify-start mt-3">
-          <Link
-            className="underline !font-lexend"
-            href={`/articles/${props.article.slug}`}
-          >
+        <p className="text-lg">{props.article.excerpt}</p>
+        <div className="card-actions justify-start mt-3 text-base">
+          <Link className="underline" href={`/articles/${props.article.slug}`}>
             Read More
           </Link>
         </div>

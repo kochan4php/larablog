@@ -37,7 +37,7 @@ const Show = (props) => {
                 <hr className="border-t border-t-slate-300" />
               </div>
               <div className="mb-5">
-                <div className="w-full lg:max-w-4xl mx-auto p-2">
+                <div className="w-full lg:max-w-3xl mx-auto p-2">
                   <div className="mb-7">
                     <h2 className="text-4xl md:text-5xl font-medium text-center">
                       {article.title}
@@ -53,7 +53,7 @@ const Show = (props) => {
                   </div>
                   <div className="mb-7 leading-loose">
                     <p
-                      className="text-base md:text-lg lg:text-xl"
+                      className="text-base md:text-lg font-medium text-gray-900"
                       dangerouslySetInnerHTML={{ __html: article.content }}
                       style={{ lineHeight: "2rem" }}
                     />
