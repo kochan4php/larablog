@@ -1,5 +1,7 @@
 import "./bootstrap";
 import "../css/app.css";
+import "trix/dist/trix";
+import "trix/dist/trix.css";
 
 import React from "react";
 import { render } from "react-dom";

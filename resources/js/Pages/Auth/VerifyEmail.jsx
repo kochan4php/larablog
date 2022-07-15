@@ -1,6 +1,7 @@
 import Button from "@/Components/Button";
 import Guest from "@/Layouts/Guest";
-import { Head, Link, useForm } from "@inertiajs/inertia-react";
+import { RenderIfTrue } from "@/utils";
+import { Link, useForm } from "@inertiajs/inertia-react";
 
 const VerifyEmail = ({ status }) => {
   const { post, processing } = useForm();
@@ -11,21 +12,19 @@ const VerifyEmail = ({ status }) => {
   };
 
   return (
-    <Guest>
-      <Head title="Email Verification" />
-
+    <Guest title="Email Verification">
       <div className="mb-4 text-sm text-gray-600">
         Thanks for signing up! Before getting started, could you verify your
         email address by clicking on the link we just emailed to you? If you
         didn't receive the email, we will gladly send you another.
       </div>
 
-      {status === "verification-link-sent" && (
+      <RenderIfTrue isTrue={status === "verification-link-sent"}>
         <div className="mb-4 font-medium text-sm text-green-600">
           A new verification link has been sent to the email address you
           provided during registration.
         </div>
-      )}
+      </RenderIfTrue>
 
       <form onSubmit={submit}>
         <div className="mt-4 flex items-center justify-between">

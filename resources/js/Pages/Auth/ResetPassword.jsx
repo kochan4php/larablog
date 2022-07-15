@@ -3,7 +3,7 @@ import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import ValidationErrors from "@/Components/ValidationErrors";
 import Guest from "@/Layouts/Guest";
-import { Head, useForm } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/inertia-react";
 import { useEffect } from "react";
 
 const ResetPassword = ({ token, email }) => {
@@ -27,9 +27,7 @@ const ResetPassword = ({ token, email }) => {
   };
 
   return (
-    <Guest>
-      <Head title="Reset Password" />
-
+    <Guest title="Reset Password">
       <ValidationErrors errors={errors} />
 
       <form onSubmit={submit}>
@@ -41,6 +39,7 @@ const ResetPassword = ({ token, email }) => {
             value={data.email}
             className="mt-1 block w-full"
             autoComplete="username"
+            placeholder="youremail@gmail.com"
             handleChange={onHandleChange}
           />
         </div>
@@ -52,6 +51,7 @@ const ResetPassword = ({ token, email }) => {
             value={data.password}
             className="mt-1 block w-full"
             autoComplete="new-password"
+            placeholder="your-new-password"
             isFocused={true}
             handleChange={onHandleChange}
           />
@@ -64,6 +64,7 @@ const ResetPassword = ({ token, email }) => {
             value={data.password_confirmation}
             className="mt-1 block w-full"
             autoComplete="new-password"
+            placeholder="your-new-password"
             handleChange={onHandleChange}
           />
         </div>

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Article;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -22,8 +23,20 @@ class DatabaseSeeder extends Seeder
             'email' => 'aphrodeosubarno@gmail.com',
             'password' => Hash::make('12345')
         ]);
-        User::factory(9)->create();
-        Article::factory(200)->create();
+        User::factory(5)->create();
+        Article::factory(20)->create();
+        Category::create([
+            'name' => 'Programming',
+            'slug' => 'programming'
+        ]);
+        Category::create([
+            'name' => 'Design',
+            'slug' => 'design'
+        ]);
+        Category::create([
+            'name' => 'Personal',
+            'slug' => 'personal'
+        ]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

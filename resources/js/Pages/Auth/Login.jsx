@@ -5,7 +5,7 @@ import Label from "@/Components/Label";
 import ValidationErrors from "@/Components/ValidationErrors";
 import Guest from "@/Layouts/Guest";
 import { RenderIfTrue } from "@/utils";
-import { Head, Link, useForm } from "@inertiajs/inertia-react";
+import { Link, useForm } from "@inertiajs/inertia-react";
 import { useEffect } from "react";
 
 const Login = ({ status, canResetPassword }) => {
@@ -35,9 +35,7 @@ const Login = ({ status, canResetPassword }) => {
   };
 
   return (
-    <Guest>
-      <Head title="Log in" />
-
+    <Guest title="Log in">
       <RenderIfTrue isTrue={status}>
         <div className="mb-4 font-medium text-sm text-green-600">{status}</div>
       </RenderIfTrue>
@@ -53,6 +51,7 @@ const Login = ({ status, canResetPassword }) => {
             value={data.email}
             className="mt-1 block w-full"
             autoComplete="username"
+            placeholder="example@gmail.com"
             isFocused={true}
             handleChange={onHandleChange}
           />
@@ -65,6 +64,7 @@ const Login = ({ status, canResetPassword }) => {
             value={data.password}
             className="mt-1 block w-full"
             autoComplete="current-password"
+            placeholder="yourpassword"
             handleChange={onHandleChange}
           />
         </div>

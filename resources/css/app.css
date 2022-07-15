@@ -7,11 +7,7 @@
     font-family: "Nunito", Arial, Helvetica, sans-serif !important;
   }
 
-  html {
-    color-scheme: dark;
-  }
-
   body {
-    @apply bg-gradient-to-tl from-slate-900 via-slate-800 to-slate-900 min-h-screen text-white;
+    @apply bg-slate-100;
   }
 }

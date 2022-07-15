@@ -10,7 +10,6 @@ const Input = ({
   isFocused,
   handleChange,
   placeholder,
-  isDark,
 }) => {
   const input = useRef();
 
@@ -20,9 +19,7 @@ const Input = ({
 
   return (
     <input
-      className={`search-input truncate outline-none px-4 py-1.5 rounded-sm text-base md:text-lg ring-2 focus:ring-4 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0 ${className} ${
-        isDark ? "bg-gray-900 text-white" : "bg-gray-100 text-slate-900"
-      }`}
+      className={`truncate outline-none px-3 py-1.5 rounded-sm text-base !font-lexend ring-2 focus:ring-4 focus:ring-opacity-50 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0 !bg-slate-50 !text-slate-900 ${className}`}
       type={type}
       name={name}
       value={value}

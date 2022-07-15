@@ -1,7 +1,7 @@
 import { For } from "@/utils";
 import { Link } from "@inertiajs/inertia-react";
 
-const Paginate = ({ links }) => (
+const Paginate = ({ links, color = "bg-slate-70" }) => (
   <div class="btn-group">
     <For
       each={links}
@@ -9,7 +9,7 @@ const Paginate = ({ links }) => (
         <Link
           key={index}
           as="button"
-          className={`btn bg-slate-700 text-white ${
+          className={`btn ${color} text-white rounded-md capitalize ${
             data.active ? "btn-active" : ""
           } ${
             !data.url ? "btn-disabled text-slate-300 cursor-not-allowed" : ""

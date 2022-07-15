@@ -3,7 +3,7 @@ import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import ValidationErrors from "@/Components/ValidationErrors";
 import Guest from "@/Layouts/Guest";
-import { Head, useForm } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/inertia-react";
 import { useEffect } from "react";
 
 const ConfirmPassword = () => {
@@ -24,9 +24,7 @@ const ConfirmPassword = () => {
   };
 
   return (
-    <Guest>
-      <Head title="Confirm Password" />
-
+    <Guest title="Confirm Password">
       <div className="mb-4 text-sm text-gray-600">
         This is a secure area of the application. Please confirm your password
         before continuing.

@@ -3,8 +3,8 @@ import { Link } from "@inertiajs/inertia-react";
 
 const Article = (props) => {
   const { article, author } = props;
-  console.log("props article : ", props);
   const back = () => window.history.back();
+
   return (
     <Main data={props} title="Detail Article">
       <section className="pt-6 pb-10">

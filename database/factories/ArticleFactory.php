@@ -17,9 +17,9 @@ class ArticleFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => mt_rand(1, 10),
-            'category_id' => 1,
-            'title' => $this->faker->word(),
+            'user_id' => mt_rand(1, 5),
+            'category_id' => mt_rand(1, 3),
+            'title' => $this->faker->sentence(mt_rand(6, 10)),
             'slug' => $this->faker->unique()->slug(3),
             'excerpt' => $this->faker->paragraph(),
             'content' => '<p>' . implode('</p><br/><p>', $this->faker->paragraphs(mt_rand(10, 20))) . '</p>'

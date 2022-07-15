@@ -1,8 +1,12 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import { Link } from "@inertiajs/inertia-react";
+import { Head } from "@inertiajs/inertia-react";
 
-const Guest = ({ children }) => (
+const Guest = ({ children, title }) => (
   <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+    <Head>
+      <title>{title}</title>
+    </Head>
     <div>
       <Link href="/">
         <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />

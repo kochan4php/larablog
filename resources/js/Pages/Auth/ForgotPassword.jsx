@@ -2,7 +2,8 @@ import Button from "@/Components/Button";
 import Input from "@/Components/Input";
 import ValidationErrors from "@/Components/ValidationErrors";
 import Guest from "@/Layouts/Guest";
-import { Head, useForm } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/inertia-react";
+import { RenderIfTrue } from "@/utils";
 
 const ForgotPassword = ({ status }) => {
   const { data, setData, post, processing, errors } = useForm({
@@ -18,18 +19,16 @@ const ForgotPassword = ({ status }) => {
   };
 
   return (
-    <Guest>
-      <Head title="Forgot Password" />
-
+    <Guest title="Forgot Password">
       <div className="mb-4 text-sm text-gray-500 leading-normal">
         Forgot your password? No problem. Just let us know your email address
         and we will email you a password reset link that will allow you to
         choose a new one.
       </div>
 
-      {status && (
+      <RenderIfTrue isTrue={status}>
         <div className="mb-4 font-medium text-sm text-green-600">{status}</div>
-      )}
+      </RenderIfTrue>
 
       <ValidationErrors errors={errors} />
 
@@ -39,6 +38,7 @@ const ForgotPassword = ({ status }) => {
           name="email"
           value={data.email}
           className="mt-1 block w-full"
+          placeholder="youremail@gmail.com"
           isFocused={true}
           handleChange={onHandleChange}
         />

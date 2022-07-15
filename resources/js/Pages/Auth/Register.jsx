@@ -3,7 +3,7 @@ import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import ValidationErrors from "@/Components/ValidationErrors";
 import Guest from "@/Layouts/Guest";
-import { Head, Link, useForm } from "@inertiajs/inertia-react";
+import { Link, useForm } from "@inertiajs/inertia-react";
 import { useEffect } from "react";
 
 const Register = () => {
@@ -15,9 +15,7 @@ const Register = () => {
   });
 
   useEffect(() => {
-    return () => {
-      reset("password", "password_confirmation");
-    };
+    return () => reset("password", "password_confirmation");
   }, []);
 
   const onHandleChange = (event) =>
@@ -34,9 +32,7 @@ const Register = () => {
   };
 
   return (
-    <Guest>
-      <Head title="Register" />
-
+    <Guest title="Register">
       <ValidationErrors errors={errors} />
 
       <form onSubmit={submit}>
@@ -48,6 +44,7 @@ const Register = () => {
             value={data.name}
             className="mt-1 block w-full"
             autoComplete="name"
+            placeholder="Your Name"
             isFocused={true}
             handleChange={onHandleChange}
             required
@@ -61,6 +58,7 @@ const Register = () => {
             value={data.email}
             className="mt-1 block w-full"
             autoComplete="username"
+            placeholder="youremail@gmail.com"
             handleChange={onHandleChange}
             required
           />
@@ -73,6 +71,7 @@ const Register = () => {
             value={data.password}
             className="mt-1 block w-full"
             autoComplete="new-password"
+            placeholder="yourpassword"
             handleChange={onHandleChange}
             required
           />
@@ -84,6 +83,7 @@ const Register = () => {
             name="password_confirmation"
             value={data.password_confirmation}
             className="mt-1 block w-full"
+            placeholder="yourpassword"
             handleChange={onHandleChange}
             required
           />
