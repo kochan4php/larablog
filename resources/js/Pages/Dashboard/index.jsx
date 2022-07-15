@@ -37,7 +37,7 @@ const Index = (props) => {
                 <div className="flex justify-between w-full">
                   <h2 className="text-2xl md:text-3xl mb-3">Artikel Saya</h2>
                   <Link
-                    className="btn bg-success hover:bg-success rounded btn-sm border-none outline-none flex capitalize items-center justify-center"
+                    className="btn bg-success hover:bg-success rounded btn-sm border-none outline-none flex capitalize !items-center justify-center shadow-md shadow-slate-300"
                     as="button"
                     href="/dashboard/articles/create"
                   >

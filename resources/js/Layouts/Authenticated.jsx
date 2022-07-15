@@ -29,7 +29,8 @@ const Authenticated = ({ auth, children, title }) => {
                     href={route("dashboard")}
                     active={
                       route().current("dashboard") ||
-                      route().current("articles.show")
+                      route().current("articles.show") ||
+                      route().current("articles.edit")
                     }
                   >
                     Artikel Saya
@@ -132,7 +133,8 @@ const Authenticated = ({ auth, children, title }) => {
                 href={route("dashboard")}
                 active={
                   route().current("dashboard") ||
-                  route().current("articles.show")
+                  route().current("articles.show") ||
+                  route().current("articles.edit")
                 }
               >
                 Artikel Saya
