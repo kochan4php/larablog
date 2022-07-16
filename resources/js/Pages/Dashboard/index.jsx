@@ -57,9 +57,9 @@ const Index = (props) => {
                   </div>
                 </div>
               </RenderIfTrue>
-              <div className="overflow-x-auto relative shadow-md shadow-slate-400 lg:rounded-md slide-element">
+              <div className="overflow-x-auto relative shadow shadow-slate-400 lg:rounded-md slide-element">
                 <table className="w-full text-center text-sm">
-                  <thead className="text-sm bg-danger text-slate-100 uppercase divide-x">
+                  <thead className="text-sm bg-danger text-slate-100 uppercase">
                     <tr>
                       <th scope="col" className="py-3 px-6">
                         No
@@ -93,7 +93,7 @@ const Index = (props) => {
                                 {article.title}
                               </th>
                               <td className="py-4 px-6 text-base">
-                                Programming
+                                {article.category.name}
                               </td>
                               <td className="py-4 px-6 flex gap-3 justify-center">
                                 <Link
@@ -124,7 +124,7 @@ const Index = (props) => {
                       />
                     </RenderIfTrue>
                     <RenderIfFalse isFalse={props.articles.data.length > 0}>
-                      <tr className="bg-slate-800 text-sm dark:border-gray-700">
+                      <tr className="bg-gray-200 text-sm">
                         <td
                           className="py-4 px-6 text-left font-medium whitespace-nowrap text-base"
                           colSpan={4}

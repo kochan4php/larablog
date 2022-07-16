@@ -6,6 +6,8 @@ use Inertia\Inertia;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class DashboardArticleController extends Controller
 {
@@ -17,7 +19,8 @@ class DashboardArticleController extends Controller
     public function index()
     {
         return Inertia::render('Dashboard/index', [
-            'articles' => Article::where('user_id', auth()->user()->id)->paginate(10)
+            'articles' => Article::where('user_id', auth()->user()->id)->latest()->paginate(10),
+            'categories' => Category::all()
         ]);
     }
 
@@ -41,7 +44,21 @@ class DashboardArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated_data = $request->validate([
+            'title' => ['required', 'unique:articles', 'min:10', 'max:255'],
+            'category_id' => ['required'],
+            'content' => ['required', 'min:200']
+        ]);
+
+        $validated_data['category_id'] = intval($validated_data['category_id']);
+        $validated_data['user_id'] = auth()->user()->id;
+        $validated_data['slug'] = strtolower(Str::slug($validated_data['title']));
+        $validated_data['excerpt'] = strip_tags(Str::limit($validated_data['content'], 200));
+
+        if (Article::create($validated_data))
+            return Redirect::route('dashboard')->with('success', 'Berhasil membuat artikel baru');
+        else
+            return Redirect::route('dashboard')->with('failed', 'Gagal membuat artikel baru :(');
     }
 
     /**
@@ -94,8 +111,8 @@ class DashboardArticleController extends Controller
     public function destroy(Article $article)
     {
         if (Article::find($article->id)->delete())
-            return redirect()->back()->with('success', 'Artikel berhasil dihapus');
+            return Redirect::back()->with('success', 'Artikel berhasil dihapus');
         else
-            return redirect()->back()->with('failed', 'Artikel gagal dihapus');
+            return Redirect::back()->with('failed', 'Artikel gagal dihapus');
     }
 }

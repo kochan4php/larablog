@@ -16,9 +16,7 @@ const Login = ({ status, canResetPassword }) => {
   });
 
   useEffect(() => {
-    return () => {
-      reset("password");
-    };
+    return () => reset("password");
   }, []);
 
   const onHandleChange = (event) =>

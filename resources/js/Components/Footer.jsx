@@ -3,10 +3,10 @@ import { For } from "@/utils";
 import { Link } from "@inertiajs/inertia-react";
 
 const dataFooterLink = [
-  { name: "Semua Artikel", path: "/" },
+  { name: "Artikel", path: "/" },
   { name: "Kategori", path: "/" },
-  { name: "Tags", path: "/" },
-  { name: "Semua Penulis", path: "/" },
+  { name: "Tag", path: "/" },
+  { name: "Penulis", path: "/" },
 ];
 
 const dataFooterIcon = [

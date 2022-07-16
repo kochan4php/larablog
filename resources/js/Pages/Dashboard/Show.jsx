@@ -1,19 +1,10 @@
-import Paginate from "@/Components/Paginate";
 import Authenticated from "@/Layouts/Authenticated";
-import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
 import { Link } from "@inertiajs/inertia-react";
 import axios from "axios";
 import FeatherIcon from "feather-icons-react";
-import { Fragment } from "react";
-import Swal from "sweetalert2";
 
 const Show = (props) => {
-  const deleteArticle = async (slug) => {
-    if (confirm("Hapus Article ?"))
-      await axios.delete(`/dashboard/articles/${slug}`);
-  };
-
-  const { article, author } = props;
+  const { article } = props;
   const back = () => window.history.back();
 
   return (
@@ -24,7 +15,7 @@ const Show = (props) => {
             <div className="p-6 lg:p-7">
               <div className="mb-5">
                 <div className="flex justify-between w-full">
-                  <h2 className="text-2xl md:text-3xl mb-3">Detail Article</h2>
+                  <h2 className="text-2xl md:text-3xl mb-3">Detail Artikel</h2>
                   <Link
                     className="btn btn-secondary rounded btn-sm border-none outline-none flex capitalize items-center justify-center"
                     as="button"
@@ -53,7 +44,7 @@ const Show = (props) => {
                   </div>
                   <div className="mb-7 leading-loose">
                     <p
-                      className="text-base md:text-lg font-medium text-gray-900"
+                      className="text-lg md:text-xl text-justify font-medium text-gray-900"
                       dangerouslySetInnerHTML={{ __html: article.content }}
                       style={{ lineHeight: "2rem" }}
                     />

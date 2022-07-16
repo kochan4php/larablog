@@ -30,13 +30,18 @@ const Article = (props) => {
             </div>
             <div className="mb-7 leading-loose">
               <p
-                className="text-base md:text-lg font-medium text-gray-900"
+                className="text-lg md:text-xl text-justify font-medium text-gray-900"
                 dangerouslySetInnerHTML={{ __html: article.content }}
                 style={{ lineHeight: "1.8rem" }}
               />
             </div>
             <div className="mb-6">
-              <Link as="button" onClick={back} className="underline text-lg">
+              <Link
+                as="button"
+                onClick={back}
+                replace
+                className="underline text-lg"
+              >
                 &laquo; Back
               </Link>
             </div>
