@@ -1,5 +1,6 @@
 import { Head } from "@inertiajs/inertia-react";
 import Navbar from "@/Components/Navbar";
+import Footer from "@/Components/Footer";
 
 const Main = (props) => (
   <>
@@ -9,6 +10,7 @@ const Main = (props) => (
     </Head>
     <Navbar data={props.data} />
     <main>{props.children}</main>
+    <Footer />
   </>
 );
 

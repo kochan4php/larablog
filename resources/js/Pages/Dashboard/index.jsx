@@ -1,30 +1,15 @@
 import Paginate from "@/Components/Paginate";
 import Authenticated from "@/Layouts/Authenticated";
 import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
-import { Head, Link } from "@inertiajs/inertia-react";
+import { Link } from "@inertiajs/inertia-react";
 import axios from "axios";
 import FeatherIcon from "feather-icons-react";
 import { Fragment } from "react";
-import Swal from "sweetalert2";
 
 const Index = (props) => {
   const deleteArticle = async (slug) => {
     if (confirm("Hapus Article ?"))
       await axios.delete(`/dashboard/articles/${slug}`);
-  };
-
-  const showAlertDelete = (slug) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) deleteArticle(slug);
-    });
   };
 
   return (
@@ -49,7 +34,7 @@ const Index = (props) => {
               </div>
               <RenderIfTrue isTrue={props.flash.success}>
                 <div className="mb-5" id="alert">
-                  <div className="p-4 bg-green-400 rounded-md shadow-lg !flex !justify-between">
+                  <div className="p-4 bg-green-400 rounded-md shadow-md shadow-slate-300 !flex !justify-between">
                     <div className="flex gap-2">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

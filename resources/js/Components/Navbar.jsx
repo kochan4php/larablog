@@ -65,24 +65,37 @@ const NavMenu = (props) => (
       <ul className="flex gap-4 items-center">
         <RenderIfTrue isTrue={props.data.auth.user}>
           <li>
-            <Link href={route("dashboard")} className="text-lg">
+            <Link
+              href={route("dashboard")}
+              className="text-lg hover:underline text-white"
+            >
               My Dashboard
             </Link>
           </li>
           <li>
-            <Link href={route("logout")} method="post" className="text-lg">
+            <Link
+              href={route("logout")}
+              method="post"
+              className="text-lg hover:underline text-white"
+            >
               Log Out
             </Link>
           </li>
         </RenderIfTrue>
         <RenderIfFalse isFalse={props.data.auth.user}>
           <li>
-            <Link href={route("login")} className="text-lg">
+            <Link
+              href={route("login")}
+              className="text-lg hover:underline text-white"
+            >
               Log in
             </Link>
           </li>
           <li>
-            <Link href={route("register")} className="text-lg">
+            <Link
+              href={route("register")}
+              className="text-lg hover:underline text-white"
+            >
               Register
             </Link>
           </li>

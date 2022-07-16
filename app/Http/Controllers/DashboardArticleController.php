@@ -93,7 +93,9 @@ class DashboardArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        Article::find($article->id)->delete();
-        return redirect()->back()->with('success', 'Article berhasil dihapus');
+        if (Article::find($article->id)->delete())
+            return redirect()->back()->with('success', 'Artikel berhasil dihapus');
+        else
+            return redirect()->back()->with('failed', 'Artikel gagal dihapus');
     }
 }
