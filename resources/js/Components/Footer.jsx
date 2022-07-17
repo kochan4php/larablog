@@ -12,6 +12,7 @@ const dataFooterLink = [
 const dataFooterIcon = [
   { icon: "github", path: "https://github.com/kochan4php/larablog" },
   { icon: "twitter", path: "https://twitter.com/deo_sbrn" },
+  { icon: "linkedin", path: "https://www.linkedin.com/in/deo-s-5316b3219/" },
   { icon: "instagram", path: "https://instagram.com/kochan.php" },
 ];
 

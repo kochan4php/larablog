@@ -5,16 +5,22 @@ import Select from "@/Components/Select";
 import Authenticated from "@/Layouts/Authenticated";
 import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
 import { Fragment } from "react";
+import { useForm } from "@inertiajs/inertia-react";
 import { TrixEditor } from "react-trix";
 
 const Create = (props) => {
-  console.log(props);
+  const { article } = props;
 
-  const { article, author } = props;
+  const { data, setData, processing, errors, put } = useForm({
+    title: article.title,
+    category_id: article.category_id,
+    content: article.content,
+  });
 
-  const handleChange = (html, text) => {
-    // html is the new html content
-    // text is the new text content
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    console.log(data);
+    put(`/dashboard/articles/${article.slug}`);
   };
 
   return (
@@ -31,7 +37,7 @@ const Create = (props) => {
               </div>
               <div className="mb-5">
                 <div className="max-w-3xl mx-auto">
-                  <form>
+                  <form onSubmit={submitHandler}>
                     <div>
                       <Label forInput="title" value="Judul Artikel" />
                       <Input
@@ -41,15 +47,16 @@ const Create = (props) => {
                         name="email"
                         className="mt-1 block w-full"
                         placeholder="Tulis judul artikel kamu disini"
-                        value={article.title}
+                        defaultValue={article.title}
+                        handleChange={(e) => setData("title", e.target.value)}
                       />
                     </div>
                     <div className="mt-4">
-                      <Label forInput="category" value="Kategori Artikel" />
+                      <Label forInput="category_id" value="Kategori Artikel" />
                       <Select
-                        name="category"
-                        id="category"
-                        onChange={(e) => console.log(e.target.value)}
+                        name="category_id"
+                        id="category_id"
+                        onChange={(e) => setData("category_id", e.target.value)}
                       >
                         <For
                           each={props.categories}
@@ -82,13 +89,15 @@ const Create = (props) => {
                       />
                       <TrixEditor
                         className="outline-none px-3 py-1.5 rounded-sm text-base !font-lexend ring-2 focus:ring-4 focus:ring-opacity-50 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0  block w-full"
-                        onChange={handleChange}
                         placeholder="your content starts here"
                         value={article.content}
+                        onChange={(e) => setData("content", e)}
                       />
                     </div>
                     <div className="flex items-center justify-start mt-4 gap-4">
-                      <Button>Perbarui artikel</Button>
+                      <Button type="submit" processing={processing}>
+                        Perbarui artikel
+                      </Button>
                     </div>
                   </form>
                 </div>

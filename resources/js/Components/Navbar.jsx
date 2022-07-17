@@ -41,11 +41,6 @@ const NavMenu = (props) => (
               My Dashboard
             </Link>
           </li>
-          <li>
-            <Link href={route("logout")} method="post" className="text-base">
-              Log Out
-            </Link>
-          </li>
         </RenderIfTrue>
         <RenderIfFalse isFalse={props.data.auth.user}>
           <li>
@@ -70,15 +65,6 @@ const NavMenu = (props) => (
               className="text-lg hover:underline text-white"
             >
               My Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link
-              href={route("logout")}
-              method="post"
-              className="text-lg hover:underline text-white"
-            >
-              Log Out
             </Link>
           </li>
         </RenderIfTrue>

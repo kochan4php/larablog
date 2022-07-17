@@ -10,6 +10,7 @@ const Input = ({
   isFocused,
   handleChange,
   placeholder,
+  defaultValue,
 }) => {
   const input = useRef();
 
@@ -28,6 +29,7 @@ const Input = ({
       required={required}
       onChange={(e) => handleChange(e)}
       placeholder={placeholder}
+      defaultValue={defaultValue}
     />
   );
 };

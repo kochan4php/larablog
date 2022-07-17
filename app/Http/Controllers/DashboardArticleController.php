@@ -47,7 +47,7 @@ class DashboardArticleController extends Controller
         $validated_data = $request->validate([
             'title' => ['required', 'unique:articles', 'min:10', 'max:255'],
             'category_id' => ['required'],
-            'content' => ['required', 'min:200']
+            'content' => ['required', 'min:100']
         ]);
 
         $validated_data['category_id'] = intval($validated_data['category_id']);
@@ -99,7 +99,27 @@ class DashboardArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $rules = [
+            'category_id' => ['required'],
+            'content' => ['required', 'min:100']
+        ];
+
+        if ($request->title !== $article->title)
+            $rules['title'] = ['required', 'unique:articles', 'min:10', 'max:255'];
+
+        $validated_data = $request->validate($rules);
+
+        if ($request->title !== $article->title)
+            $validated_data['slug'] = strtolower(Str::slug($request->title));
+
+        $validated_data['category_id'] = intval($validated_data['category_id']);
+        $validated_data['user_id'] = auth()->user()->id;
+        $validated_data['excerpt'] = strip_tags(Str::limit($validated_data['content'], 200));
+
+        if (Article::find($article->id)->update($validated_data))
+            return Redirect::route('dashboard')->with('success', 'Berhasil memperbarui artikel');
+        else
+            return Redirect::route('dashboard')->with('failed', 'Gagal memperbarui artikel :(');
     }
 
     /**
