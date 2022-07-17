@@ -104,13 +104,13 @@ class DashboardArticleController extends Controller
             'content' => ['required', 'min:100']
         ];
 
-        if ($request->title !== $article->title)
-            $rules['title'] = ['required', 'unique:articles', 'min:10', 'max:255'];
+        $same_title = $request->title === $article->title;
+
+        if (!$same_title) $rules['title'] = ['required', 'unique:articles', 'min:10', 'max:255'];
 
         $validated_data = $request->validate($rules);
 
-        if ($request->title !== $article->title)
-            $validated_data['slug'] = strtolower(Str::slug($request->title));
+        if (!$same_title) $validated_data['slug'] = strtolower(Str::slug($request->title));
 
         $validated_data['category_id'] = intval($validated_data['category_id']);
         $validated_data['user_id'] = auth()->user()->id;
