@@ -1,4 +1,4 @@
-import { RenderIfFalse, RenderIfTrue } from "@/utils";
+import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
 import { Link } from "@inertiajs/inertia-react";
 import ApplicationLogo from "./ApplicationLogo";
 
@@ -59,6 +59,29 @@ const NavMenu = (props) => (
     <div className="hidden md:block">
       <ul className="flex gap-4 items-center">
         <RenderIfTrue isTrue={props.data.auth.user}>
+          <li>
+            <div className="dropdown dropdown-end">
+              <label
+                tabindex="0"
+                className="text-lg hover:underline text-white cursor-pointer"
+              >
+                Kategori
+              </label>
+              <ul
+                tabindex="0"
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-md !text-slate-900 w-52"
+              >
+                <For
+                  each={props.data.categories}
+                  render={(data, index) => (
+                    <li key={index}>
+                      <Link href="/">{data.name}</Link>
+                    </li>
+                  )}
+                />
+              </ul>
+            </div>
+          </li>
           <li>
             <Link
               href={route("dashboard")}
