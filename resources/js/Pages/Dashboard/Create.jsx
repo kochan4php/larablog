@@ -13,6 +13,7 @@ const Create = (props) => {
   const { data, setData, post, processing, errors } = useForm({
     title: "",
     category_id: "1",
+    image: "",
     content: "",
   });
 
@@ -41,7 +42,6 @@ const Create = (props) => {
                     <div>
                       <Label forInput="title" value="Judul Artikel" />
                       <Input
-                        isDark
                         autoComplete="off"
                         type="text"
                         name="title"
@@ -69,6 +69,23 @@ const Create = (props) => {
                           )}
                         />
                       </Select>
+                    </div>
+                    <div className="mt-4">
+                      <Label
+                        forInput="image"
+                        value="Gambar Article (jpg, png, webp)"
+                      />
+                      <Input
+                        autoComplete="off"
+                        type="file"
+                        name="image"
+                        className="mt-1 block w-full"
+                        placeholder="Tulis judul artikel kamu disini"
+                        defaultValue={data.image}
+                        handleChange={(e) =>
+                          setData("image", e.target.files[0])
+                        }
+                      />
                     </div>
                     <div className="mt-4">
                       <Label

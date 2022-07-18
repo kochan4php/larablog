@@ -2,10 +2,11 @@ import Button from "@/Components/Button";
 import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import Select from "@/Components/Select";
+import ValidationErrors from "@/Components/ValidationErrors";
 import Authenticated from "@/Layouts/Authenticated";
 import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
-import { Fragment } from "react";
 import { useForm } from "@inertiajs/inertia-react";
+import { Fragment } from "react";
 import { TrixEditor } from "react-trix";
 
 const Create = (props) => {
@@ -37,6 +38,7 @@ const Create = (props) => {
               </div>
               <div className="mb-5">
                 <div className="max-w-3xl mx-auto">
+                  <ValidationErrors errors={errors} />
                   <form onSubmit={submitHandler}>
                     <div>
                       <Label forInput="title" value="Judul Artikel" />

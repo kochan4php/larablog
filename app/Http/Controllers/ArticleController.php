@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
-use App\Models\User;
 use Inertia\Inertia;
-use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
@@ -23,7 +21,6 @@ class ArticleController extends Controller
     {
         return Inertia::render('Articles/Article', [
             'article' => $article,
-            'author' => $article->user,
             'categories' => Category::all()
         ]);
     }

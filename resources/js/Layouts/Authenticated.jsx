@@ -37,9 +37,6 @@ const Authenticated = ({ auth, children, title }) => {
                   </NavLink>
                 </div>
                 <div className="hidden space-x-8 md:-my-px md:ml-10 md:flex">
-                  <NavLink href="/dashboard/profile">Profil Saya</NavLink>
-                </div>
-                <div className="hidden space-x-8 md:-my-px md:ml-10 md:flex">
                   <NavLink
                     href="/dashboard/articles/create"
                     active={route().current("articles.create")}
@@ -47,9 +44,12 @@ const Authenticated = ({ auth, children, title }) => {
                     Buat Artikel
                   </NavLink>
                 </div>
+                <div className="hidden space-x-8 md:-my-px md:ml-10 md:flex">
+                  <NavLink href="/dashboard/profile">Profil Saya</NavLink>
+                </div>
               </div>
               <div className="hidden md:flex md:items-center md:ml-6">
-                <div className="ml-3 relative">
+                <div className="ml-3 relative hover:bg-red-700 rounded-md">
                   <Dropdown>
                     <Dropdown.Trigger>
                       <span className="inline-flex rounded-md">
@@ -139,14 +139,14 @@ const Authenticated = ({ auth, children, title }) => {
               >
                 Artikel Saya
               </ResponsiveNavLink>
-              <ResponsiveNavLink href={"/dashboard/profile"}>
-                Profil Saya
-              </ResponsiveNavLink>
               <ResponsiveNavLink
                 href={"/dashboard/articles/create"}
                 active={route().current("articles.create")}
               >
                 Buat Artikel
+              </ResponsiveNavLink>
+              <ResponsiveNavLink href={"/dashboard/profile"}>
+                Profil Saya
               </ResponsiveNavLink>
               <ResponsiveNavLink
                 method="post"

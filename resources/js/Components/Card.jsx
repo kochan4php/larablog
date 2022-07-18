@@ -4,7 +4,11 @@ const Card = (props) => (
   <div className="card bg-slate-50 rounded-md shadow-lg hover:shadow-lg shadow-slate-400 hover:shadow-slate-400">
     <figure>
       <img
-        src="https://placeimg.com/400/225/arch"
+        src={
+          props.article.image
+            ? `/storage/${props.article.image}`
+            : "https://placeimg.com/400/225/arch"
+        }
         width="100%"
         alt="car!"
         className="object-cover select-none"

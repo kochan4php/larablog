@@ -2,7 +2,7 @@ import Main from "@/Layouts/Main";
 import { Link } from "@inertiajs/inertia-react";
 
 const Article = (props) => {
-  const { article, author } = props;
+  const { article } = props;
   const back = () => window.history.back();
 
   return (
@@ -17,12 +17,16 @@ const Article = (props) => {
             </div>
             <div className="mb-7">
               <p className="text-lg md:text-xl font-medium text-center">
-                Ditulis oleh <Link>{author.name}</Link>
+                Ditulis oleh <Link>{article.user.name}</Link>
               </p>
             </div>
             <div className="mb-7 rounded overflow-hidden">
               <img
-                src="https://placeimg.com/400/225/arch"
+                src={
+                  article.image
+                    ? `/storage/${article.image}`
+                    : "https://placeimg.com/400/225/arch"
+                }
                 width="100%"
                 alt="car!"
                 className="object-cover object-center"

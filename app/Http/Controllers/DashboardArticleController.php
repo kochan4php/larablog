@@ -46,10 +46,12 @@ class DashboardArticleController extends Controller
     {
         $validated_data = $request->validate([
             'title' => ['required', 'unique:articles', 'min:10', 'max:255'],
+            'image' => ['required', 'image', 'file', 'max:3072'],
             'category_id' => ['required'],
             'content' => ['required', 'min:100']
         ]);
 
+        $validated_data['image'] = $request->file('image')->store('articles-image');
         $validated_data['category_id'] = intval($validated_data['category_id']);
         $validated_data['user_id'] = auth()->user()->id;
         $validated_data['slug'] = strtolower(Str::slug($validated_data['title']));

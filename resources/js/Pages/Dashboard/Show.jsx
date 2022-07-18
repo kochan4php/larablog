@@ -6,6 +6,7 @@ import FeatherIcon from "feather-icons-react";
 const Show = (props) => {
   const { article } = props;
   const back = () => window.history.back();
+  console.log(article);
 
   return (
     <Authenticated auth={props.auth} errors={props.errors} title="My Dashboard">
@@ -36,7 +37,11 @@ const Show = (props) => {
                   </div>
                   <div className="mb-7 rounded overflow-hidden">
                     <img
-                      src="https://placeimg.com/400/225/arch"
+                      src={
+                        article.image
+                          ? `/storage/${article.image}`
+                          : "https://placeimg.com/400/225/arch"
+                      }
                       width="100%"
                       alt="car!"
                       className="object-cover object-center"

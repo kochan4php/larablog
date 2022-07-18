@@ -7,7 +7,7 @@ import { Fragment } from "react";
 import { RenderIfTrue } from "@/utils";
 
 const Index = (props) => {
-  const { articles, authors } = props;
+  const { articles } = props;
 
   console.log(props);
 
@@ -28,10 +28,14 @@ const Index = (props) => {
               <div className="bg-slate-50 w-full">
                 <figure>
                   <img
-                    src="https://placeimg.com/400/925/arch"
+                    src={
+                      articles?.data[0]?.image
+                        ? `/storage/${articles?.data[0]?.image}`
+                        : "https://placeimg.com/400/225/arch"
+                    }
                     alt="car!"
                     width="100%"
-                    className="object-cover max-h-[430px]"
+                    className="object-cover object-center max-h-[440px]"
                   />
                 </figure>
                 <div className="card-body">
@@ -60,7 +64,7 @@ const Index = (props) => {
               each={articles?.data?.slice(1)}
               render={(data, index) => (
                 <Fragment key={index}>
-                  <Card article={data} authors={authors} />
+                  <Card article={data} />
                 </Fragment>
               )}
             />

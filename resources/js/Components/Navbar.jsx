@@ -1,3 +1,4 @@
+import FeatherIcon from "feather-icons-react";
 import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
 import { Link } from "@inertiajs/inertia-react";
 import ApplicationLogo from "./ApplicationLogo";
@@ -32,8 +33,8 @@ const NavMenu = (props) => (
     <div className="md:hidden dropdown dropdown-end">
       <Hamburger />
       <ul
-        tabindex="0"
-        className="mt-3 p-2 shadow menu menu-compact dropdown-content text-white bg-danger rounded-md w-52"
+        tabIndex="0"
+        className="mt-3 p-2 shadow menu menu-compact text-dark dropdown-content rounded-md w-52"
       >
         <RenderIfTrue isTrue={props.data.auth.user}>
           <li>
@@ -60,16 +61,27 @@ const NavMenu = (props) => (
       <ul className="flex gap-4 items-center">
         <RenderIfTrue isTrue={props.data.auth.user}>
           <li>
+            <Link
+              href={route("dashboard")}
+              className="text-lg hover:underline text-white"
+            >
+              My Dashboard
+            </Link>
+          </li>
+          <li>
             <div className="dropdown dropdown-end">
               <label
-                tabindex="0"
-                className="text-lg hover:underline text-white cursor-pointer"
+                tabIndex="0"
+                className="text-lg transition-all duration-200 text-white cursor-pointer flex items-center justify-center gap-1 hover:bg-red-700 p-1.5 rounded-md outline-none border-none"
               >
-                Kategori
+                <span>Kategori</span>
+                <span>
+                  <FeatherIcon icon="chevron-down" />
+                </span>
               </label>
               <ul
-                tabindex="0"
-                className="dropdown-content menu p-2 shadow bg-base-100 rounded-md !text-slate-900 w-52"
+                tabIndex="0"
+                className="dropdown-content menu p-2 shadow bg-base-100 rounded-md !text-slate-900 w-52 border border-slate-400"
               >
                 <For
                   each={props.data.categories}
@@ -81,14 +93,6 @@ const NavMenu = (props) => (
                 />
               </ul>
             </div>
-          </li>
-          <li>
-            <Link
-              href={route("dashboard")}
-              className="text-lg hover:underline text-white"
-            >
-              My Dashboard
-            </Link>
           </li>
         </RenderIfTrue>
         <RenderIfFalse isFalse={props.data.auth.user}>
