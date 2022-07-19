@@ -119,7 +119,7 @@ const NavMenu = (props) => (
 );
 
 const Navbar = (props) => (
-  <nav className="navbar text-white bg-danger">
+  <nav className="navbar fixed right-0 z-[999] left-0 top-0 text-white bg-danger shadow-md shadow-slate-400">
     <div className="container">
       <div className="flex-1">
         <Logo />

@@ -9,7 +9,7 @@ const Main = (props) => (
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     </Head>
     <Navbar data={props.data} />
-    <div>
+    <div className="pt-16">
       <main>{props.children}</main>
       <aside></aside>
     </div>

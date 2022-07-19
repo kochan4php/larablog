@@ -31,7 +31,7 @@ const Index = (props) => {
                     src={
                       articles?.data[0]?.image
                         ? `/storage/${articles?.data[0]?.image}`
-                        : "https://placeimg.com/400/225/arch"
+                        : articles?.data[0]?.image
                     }
                     alt="car!"
                     width="100%"
