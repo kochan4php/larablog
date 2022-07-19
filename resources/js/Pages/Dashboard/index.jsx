@@ -22,7 +22,7 @@ const Index = (props) => {
                 <div className="flex justify-between w-full">
                   <h2 className="text-2xl md:text-3xl mb-3">Artikel Saya</h2>
                   <Link
-                    className="btn bg-success hover:bg-success rounded btn-sm border-none outline-none flex capitalize !items-center justify-center shadow-md shadow-slate-300"
+                    className="btn bg-success hover:bg-success rounded btn-sm border-none outline-none flex capitalize !items-center justify-center"
                     as="button"
                     href="/dashboard/articles/create"
                   >
@@ -34,7 +34,7 @@ const Index = (props) => {
               </div>
               <RenderIfTrue isTrue={props.flash.success}>
                 <div className="mb-5" id="alert">
-                  <div className="p-4 bg-green-400 rounded-md shadow-md shadow-slate-300 !flex !justify-between">
+                  <div className="p-4 bg-green-400 rounded-md !flex !justify-between">
                     <div className="flex gap-2">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ const Index = (props) => {
                   </div>
                 </div>
               </RenderIfTrue>
-              <div className="overflow-x-auto relative shadow shadow-slate-400 lg:rounded-md slide-element">
+              <div className="overflow-x-auto relative lg:rounded-md slide-element">
                 <table className="w-full text-center text-sm">
                   <thead className="text-sm bg-danger text-slate-100 uppercase">
                     <tr>
@@ -83,7 +83,9 @@ const Index = (props) => {
                           <Fragment key={index}>
                             <tr
                               className={`text-sm ${
-                                index % 2 === 0 ? "bg-gray-200" : "bg-gray-50"
+                                index % 2 === 0
+                                  ? "bg-slate-200"
+                                  : "bg-slate-100"
                               }`}
                             >
                               <th className="py-4 px-6 font-medium whitespace-nowrap text-base text-center">

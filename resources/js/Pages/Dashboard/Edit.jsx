@@ -6,23 +6,40 @@ import ValidationErrors from "@/Components/ValidationErrors";
 import Authenticated from "@/Layouts/Authenticated";
 import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
 import { useForm } from "@inertiajs/inertia-react";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { TrixEditor } from "react-trix";
+import { Inertia } from "@inertiajs/inertia";
 
 const Edit = (props) => {
   const { article } = props;
 
-  const { data, setData, processing, errors, put } = useForm({
+  const { data, setData, processing, errors, patch } = useForm({
     title: article.title,
     category_id: article.category_id,
+    image: null,
     content: article.content,
   });
+  console.log(article.image);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     console.log(data);
-    put(`/dashboard/articles/${article.slug}`);
+    Inertia.post(`/dashboard/articles/${article.slug}`, {
+      _method: "put",
+      ...data,
+    });
   };
+
+  useEffect(() => {
+    const image = document.getElementById("image");
+    const image_preview = document.querySelector(".image-preview");
+
+    image.addEventListener("change", async function () {
+      const file = this.files[0];
+      image_preview.src = await URL.createObjectURL(file);
+      image_preview.style.display = "block";
+    });
+  }, []);
 
   return (
     <Authenticated auth={props.auth} errors={props.errors} title="Buat Artikel">
@@ -82,6 +99,26 @@ const Edit = (props) => {
                           )}
                         />
                       </Select>
+                    </div>
+                    <div className="mt-4">
+                      <Label
+                        forInput="image"
+                        value="Gambar Article (jpg, png, webp)"
+                      />
+                      <img
+                        src={`/storage/${article.image}`}
+                        className="image-preview my-4 w-full md:w-1/2 rounded"
+                      />
+                      <Input
+                        autoComplete="off"
+                        type="file"
+                        name="image"
+                        id="image"
+                        className="mt-1 block w-full !px-1.5"
+                        handleChange={(e) =>
+                          setData("image", e.target.files[0])
+                        }
+                      />
                     </div>
                     <div className="mt-4">
                       <Label

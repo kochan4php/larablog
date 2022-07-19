@@ -108,12 +108,19 @@ class DashboardArticleController extends Controller
         ];
 
         $same_title = $request->title === $article->title;
+        $has_image = $request->file('image');
 
         if (!$same_title) $rules['title'] = ['required', 'unique:articles', 'min:10', 'max:255'];
+        if ($has_image)  $rules['image'] = ['required', 'image', 'file', 'max:3072'];
 
         $validated_data = $request->validate($rules);
 
         if (!$same_title) $validated_data['slug'] = strtolower(Str::slug($request->title));
+
+        if ($has_image) {
+            Storage::delete($article->image);
+            $validated_data['image'] = $has_image->store('articles-image');
+        }
 
         $validated_data['category_id'] = intval($validated_data['category_id']);
         $validated_data['user_id'] = auth()->user()->id;

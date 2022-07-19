@@ -13,7 +13,7 @@ const Create = (props) => {
   const { data, setData, post, processing, errors } = useForm({
     title: "",
     category_id: "1",
-    image: "",
+    image: null,
     content: "",
   });
 
