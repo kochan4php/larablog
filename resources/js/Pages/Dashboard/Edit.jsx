@@ -16,7 +16,7 @@ const Edit = (props) => {
   const { data, setData, processing, errors, patch } = useForm({
     title: article.title,
     category_id: article.category_id,
-    image: null,
+    image: "",
     content: article.content,
   });
   console.log(article.image);

@@ -69,11 +69,9 @@ const Index = (props) => {
               )}
             />
           </div>
-          <RenderIfTrue isTrue={articles?.data?.length > 8}>
-            <div className="mt-9 mb-6 w-full flex justify-center items-center">
-              <Paginate links={articles.links} />
-            </div>
-          </RenderIfTrue>
+          <div className="mt-9 mb-6 w-full flex justify-center items-center">
+            <Paginate links={articles.links} />
+          </div>
         </div>
       </section>
     </Main>

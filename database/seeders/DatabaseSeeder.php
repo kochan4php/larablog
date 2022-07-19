@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Article;
 use App\Models\User;
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory(5)->create();
         Article::factory(20)->create();
+        Comment::factory(300)->create();
         Category::create([
             'name' => 'Programming',
             'slug' => 'programming'
@@ -37,11 +38,5 @@ class DatabaseSeeder extends Seeder
             'name' => 'Personal',
             'slug' => 'personal'
         ]);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

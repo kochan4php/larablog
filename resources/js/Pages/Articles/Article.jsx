@@ -3,6 +3,7 @@ import { Link } from "@inertiajs/inertia-react";
 
 const Article = (props) => {
   const { article } = props;
+  console.log(article);
   const back = () => window.history.back();
 
   return (
