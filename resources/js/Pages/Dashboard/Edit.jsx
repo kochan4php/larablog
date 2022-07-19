@@ -9,7 +9,7 @@ import { useForm } from "@inertiajs/inertia-react";
 import { Fragment } from "react";
 import { TrixEditor } from "react-trix";
 
-const Create = (props) => {
+const Edit = (props) => {
   const { article } = props;
 
   const { data, setData, processing, errors, put } = useForm({
@@ -112,4 +112,4 @@ const Create = (props) => {
   );
 };
 
-export default Create;
+export default Edit;

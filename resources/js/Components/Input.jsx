@@ -11,6 +11,7 @@ const Input = ({
   handleChange,
   placeholder,
   defaultValue,
+  id,
 }) => {
   const input = useRef();
 
@@ -21,6 +22,7 @@ const Input = ({
   return (
     <input
       className={`truncate outline-none px-3 py-1.5 rounded-sm text-base !font-lexend ring-2 focus:ring-4 focus:ring-opacity-50 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0 !bg-slate-50 !text-slate-900 cursor-pointer ${className}`}
+      id={id}
       type={type}
       name={name}
       value={value}

@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class DashboardArticleController extends Controller
@@ -132,9 +133,13 @@ class DashboardArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        if (Article::find($article->id)->delete())
+        $article = Article::find($article->id);
+
+        if (!is_null($article)) {
+            $article->delete();
+            Storage::delete($article->image);
             return Redirect::back()->with('success', 'Artikel berhasil dihapus');
-        else
+        } else
             return Redirect::back()->with('failed', 'Artikel gagal dihapus');
     }
 }

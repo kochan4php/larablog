@@ -6,7 +6,7 @@ import ValidationErrors from "@/Components/ValidationErrors";
 import Authenticated from "@/Layouts/Authenticated";
 import { For } from "@/utils";
 import { useForm } from "@inertiajs/inertia-react";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { TrixEditor } from "react-trix";
 
 const Create = (props) => {
@@ -19,9 +19,19 @@ const Create = (props) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(data);
     post("/dashboard/articles");
   };
+
+  useEffect(() => {
+    const image = document.getElementById("image");
+    const image_preview = document.querySelector(".image-preview");
+
+    image.addEventListener("change", async function () {
+      const file = this.files[0];
+      image_preview.src = await URL.createObjectURL(file);
+      image_preview.style.display = "block";
+    });
+  }, []);
 
   return (
     <Authenticated auth={props.auth} errors={props.errors} title="Buat Artikel">
@@ -75,13 +85,14 @@ const Create = (props) => {
                         forInput="image"
                         value="Gambar Article (jpg, png, webp)"
                       />
+                      <img className="image-preview my-4 w-full md:w-1/2 rounded hidden" />
                       <Input
                         autoComplete="off"
                         type="file"
                         name="image"
-                        className="mt-1 block w-full"
+                        id="image"
+                        className="mt-1 block w-full !px-1.5"
                         placeholder="Tulis judul artikel kamu disini"
-                        defaultValue={data.image}
                         handleChange={(e) =>
                           setData("image", e.target.files[0])
                         }
