@@ -47,7 +47,7 @@ class DashboardArticleController extends Controller
     {
         $validated_data = $request->validate([
             'title' => ['required', 'unique:articles', 'min:10', 'max:255'],
-            'image' => ['required', 'image', 'file', 'max:3072'],
+            'image' => ['required', 'image', 'file', 'max:2560'],
             'category_id' => ['required'],
             'content' => ['required', 'min:100']
         ]);
@@ -111,7 +111,7 @@ class DashboardArticleController extends Controller
         $has_image = $request->file('image');
 
         if (!$same_title) $rules['title'] = ['required', 'unique:articles', 'min:10', 'max:255'];
-        if ($has_image)  $rules['image'] = ['required', 'image', 'file', 'max:3072'];
+        if ($has_image)  $rules['image'] = ['required', 'image', 'file', 'max:2560'];
 
         $validated_data = $request->validate($rules);
 

@@ -21,7 +21,8 @@ class ArticleController extends Controller
     {
         return Inertia::render('Articles/Article', [
             'article' => $article,
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'comments' => $article->comments
         ]);
     }
 }

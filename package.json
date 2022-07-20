@@ -22,8 +22,10 @@
         "vite": "^2.9.11"
     },
     "dependencies": {
+        "@uiw/react-md-editor": "^3.14.5",
         "daisyui": "^2.19.0",
         "feather-icons-react": "^0.5.0",
+        "moment": "^2.29.4",
         "prop-types": "^15.8.1",
         "react-trix": "^0.10.0",
         "recoil": "^0.7.4",
