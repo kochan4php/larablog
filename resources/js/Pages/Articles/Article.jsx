@@ -1,12 +1,12 @@
+import Button from "@/Components/Button";
 import Main from "@/Layouts/Main";
-import { For } from "@/utils";
+import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
 import { Link } from "@inertiajs/inertia-react";
 import moment from "moment";
 
 const Article = (props) => {
-  const { article } = props;
-  const { comments } = article;
-  console.log(comments);
+  const { article, comments, users } = props;
+  console.log(props);
   const back = () => window.history.back();
 
   return (
@@ -54,35 +54,74 @@ const Article = (props) => {
                   style={{ lineHeight: "1.8rem" }}
                 />
               </div>
-              <div className="mb-7">
+              <div className="my-7">
                 <hr className="border-t border-t-slate-300" />
               </div>
               <section>
                 <div className="mb-7">
-                  <h1 className="text-3xl md:text-4xl font-semibold">
+                  <h1 className="text-2xl md:text-3xl font-semibold">
                     Komentar
                   </h1>
                 </div>
-                <For
-                  each={comments}
-                  render={(data, index) => (
-                    <section key={index}>
-                      <div className="p-1">
-                        <p className="text-lg md:text-xl font-medium">
-                          Deo Subarno
-                        </p>
-                      </div>
-                      <div className="mb-7 bg-white rounded-md p-4 shadow-md shadow-slate-400">
-                        <p className="text-base md:text-lg font-medium">
-                          {data.comment}
-                        </p>
-                        <p className="text-sm mt-4 font-medium" key={index}>
-                          {moment(data.created_at).fromNow()}
-                        </p>
-                      </div>
-                    </section>
-                  )}
-                />
+                <RenderIfTrue isTrue={comments.length > 0}>
+                  <For
+                    each={comments}
+                    render={(data, index) => {
+                      const user = users.find(
+                        (user) => user.id === data.user_id
+                      );
+                      return (
+                        <section key={index}>
+                          <div className="mb-1">
+                            <p className="text-lg md:text-xl font-medium">
+                              {user.name}
+                            </p>
+                          </div>
+                          <div className="mb-7 bg-white rounded-md p-4 shadow-md shadow-slate-400">
+                            <p className="text-base md:text-lg font-medium">
+                              {data.comment}
+                            </p>
+                            <p className="text-sm mt-4 font-medium" key={index}>
+                              {moment(data.created_at).format("LL")}
+                            </p>
+                          </div>
+                        </section>
+                      );
+                    }}
+                  />
+                </RenderIfTrue>
+                <RenderIfFalse isFalse={comments.length > 0}>
+                  <div>
+                    <p className="text-lg md:text-xl font-medium">
+                      Belum ada komentar.
+                    </p>
+                  </div>
+                </RenderIfFalse>
+              </section>
+              <div className="my-7">
+                <hr className="border-t border-t-slate-300" />
+              </div>
+              <section>
+                <div className="mb-7">
+                  <h1 className="text-2xl md:text-3xl font-semibold">
+                    Tambahkan Komentar
+                  </h1>
+                </div>
+                <div className="mb-7">
+                  <form className="flex flex-col gap-4">
+                    <textarea
+                      rows="3"
+                      className="outline-none px-3 py-1.5 rounded-sm text-base !font-lexend ring-2 focus:ring-4 focus:ring-opacity-50 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0 !bg-slate-50 !text-slate-900"
+                      placeholder="Tuliskan komentarmu disini"
+                    ></textarea>
+                    <Button
+                      type="submit"
+                      className="w-1/2 md:w-1/4 flex justify-center"
+                    >
+                      Tambah komentar
+                    </Button>
+                  </form>
+                </div>
               </section>
             </article>
           </div>

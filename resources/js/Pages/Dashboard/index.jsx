@@ -140,9 +140,9 @@ const Index = (props) => {
                   </tbody>
                 </table>
               </div>
-              <RenderIfTrue isTrue={props.articles.data.length > 10}>
+              <RenderIfTrue isTrue={props.articles.data.length >= 10}>
                 <div className="mt-7 mb-2 w-full flex justify-center items-center">
-                  <Paginate links={props.articles.links} color="bg-slate-800" />
+                  <Paginate links={props.articles.links} />
                 </div>
               </RenderIfTrue>
             </div>
