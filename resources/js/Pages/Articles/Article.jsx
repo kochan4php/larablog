@@ -107,21 +107,39 @@ const Article = (props) => {
                     Tambahkan Komentar
                   </h1>
                 </div>
-                <div className="mb-7">
-                  <form className="flex flex-col gap-4">
-                    <textarea
-                      rows="3"
-                      className="outline-none px-3 py-1.5 rounded-sm text-base !font-lexend ring-2 focus:ring-4 focus:ring-opacity-50 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0 !bg-slate-50 !text-slate-900"
-                      placeholder="Tuliskan komentarmu disini"
-                    ></textarea>
-                    <Button
-                      type="submit"
-                      className="w-1/2 md:w-1/4 flex justify-center"
-                    >
-                      Tambah komentar
-                    </Button>
-                  </form>
-                </div>
+                <RenderIfTrue isTrue={props.auth.user}>
+                  <div className="mb-7">
+                    <form className="flex flex-col gap-4">
+                      <textarea
+                        rows="3"
+                        className="outline-none px-3 py-1.5 rounded-sm text-base !font-lexend ring-2 focus:ring-4 focus:ring-opacity-50 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0 !bg-slate-50 !text-slate-900"
+                        placeholder="Tuliskan komentarmu disini"
+                      ></textarea>
+                      <Button
+                        type="submit"
+                        className="w-1/2 md:w-1/4 flex justify-center"
+                      >
+                        Tambah komentar
+                      </Button>
+                    </form>
+                  </div>
+                </RenderIfTrue>
+                <RenderIfFalse isFalse={props.auth.user}>
+                  <div className="mb-7">
+                    <div className="text-lg flex gap-4">
+                      <p>
+                        Mau berkomentar? silahkan{" "}
+                        <Link
+                          className="underline text-blue-600"
+                          href={route("login")}
+                        >
+                          Login
+                        </Link>{" "}
+                        dulu
+                      </p>
+                    </div>
+                  </div>
+                </RenderIfFalse>
               </section>
             </article>
           </div>
