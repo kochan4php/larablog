@@ -61,7 +61,7 @@ const Authenticated = ({ auth, children, title }) => {
         <title>{title}</title>
       </Head>
       <div className="min-h-screen bg-slate-200">
-        <nav className="bg-danger !text-white shadow-md shadow-slate-400">
+        <nav className="bg-danger !text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between py-3">
               <div className="flex">
@@ -205,7 +205,13 @@ const Authenticated = ({ auth, children, title }) => {
           </div>
         </nav>
 
-        <main className="py-8">{children}</main>
+        <main className="py-8">
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div className="bg-white text-slate-900 overflow-hidden shadow-md shadow-slate-400 sm:rounded-md">
+              {children}
+            </div>
+          </div>
+        </main>
 
         <footer className="footer footer-center p-10 bg-danger text-white">
           <div className="grid grid-flow-col gap-4">

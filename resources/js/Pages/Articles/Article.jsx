@@ -72,12 +72,10 @@ const Article = (props) => {
                       );
                       return (
                         <section key={index}>
-                          <div className="mb-1">
+                          <div className="mb-7 bg-white rounded-md p-4 shadow-md shadow-slate-400 flex flex-col gap-3">
                             <p className="text-lg md:text-xl font-medium">
                               {user.name}
                             </p>
-                          </div>
-                          <div className="mb-7 bg-white rounded-md p-4 shadow-md shadow-slate-400">
                             <p className="text-base md:text-lg font-medium">
                               {data.comment}
                             </p>
