@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardArticleController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,7 @@ Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('art
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardArticleController::class, 'index'])->name('dashboard');
     Route::resource('/dashboard/articles', DashboardArticleController::class);
+    Route::post('/articles/comment', [CommentController::class, 'store'])->name('article.comment');
 });
 
 require __DIR__ . '/auth.php';

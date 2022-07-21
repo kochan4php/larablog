@@ -1,13 +1,26 @@
 import Button from "@/Components/Button";
 import Main from "@/Layouts/Main";
 import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
-import { Link } from "@inertiajs/inertia-react";
+import { Link, useForm } from "@inertiajs/inertia-react";
 import moment from "moment";
+import FeatherIcon from "feather-icons-react";
 
 const Article = (props) => {
-  const { article, comments, users } = props;
-  console.log(props);
+  const { article } = props;
+
+  const { data, post, processing, setData } = useForm({
+    article_id: article.id,
+    user_id: props.auth.user.id,
+    comment: "",
+  });
+
   const back = () => window.history.back();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    post("/articles/comment");
+    setData("comment", "");
+  };
 
   return (
     <Main data={props} title="Detail Article">
@@ -25,6 +38,33 @@ const Article = (props) => {
               </Link>
             </div>
             <article>
+              <div className="mb-7">
+                <RenderIfTrue isTrue={props.flash.success}>
+                  <div className="mb-5" id="alert">
+                    <div className="p-4 bg-green-400 rounded-md !flex !justify-between">
+                      <div className="flex gap-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="stroke-current flex-shrink-0 h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                        <span>{props.flash.success}</span>
+                      </div>
+                      <Link as="button">
+                        <FeatherIcon icon="x" />
+                      </Link>
+                    </div>
+                  </div>
+                </RenderIfTrue>
+              </div>
               <div className="mb-7">
                 <h2 className="text-4xl md:text-5xl font-medium text-center">
                   {article.title}
@@ -63,18 +103,15 @@ const Article = (props) => {
                     Komentar
                   </h1>
                 </div>
-                <RenderIfTrue isTrue={comments.length > 0}>
+                <RenderIfTrue isTrue={article.comments.length > 0}>
                   <For
-                    each={comments}
+                    each={article.comments}
                     render={(data, index) => {
-                      const user = users.find(
-                        (user) => user.id === data.user_id
-                      );
                       return (
                         <section key={index}>
                           <div className="mb-7 bg-white rounded-md p-4 shadow-md shadow-slate-400 flex flex-col gap-3">
                             <p className="text-lg md:text-xl font-medium">
-                              {user.name}
+                              {data.user.name}
                             </p>
                             <p className="text-base md:text-lg font-medium">
                               {data.comment}
@@ -88,7 +125,7 @@ const Article = (props) => {
                     }}
                   />
                 </RenderIfTrue>
-                <RenderIfFalse isFalse={comments.length > 0}>
+                <RenderIfFalse isFalse={article.comments.length > 0}>
                   <div>
                     <p className="text-lg md:text-xl font-medium">
                       Belum ada komentar.
@@ -107,15 +144,20 @@ const Article = (props) => {
                 </div>
                 <RenderIfTrue isTrue={props.auth.user}>
                   <div className="mb-7">
-                    <form className="flex flex-col gap-4">
+                    <form
+                      className="flex flex-col gap-4"
+                      onSubmit={submitHandler}
+                    >
                       <textarea
                         rows="3"
                         className="outline-none px-3 py-1.5 rounded-sm text-base !font-lexend ring-2 focus:ring-4 focus:ring-opacity-50 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0 !bg-slate-50 !text-slate-900"
                         placeholder="Tuliskan komentarmu disini"
+                        onChange={(e) => setData("comment", e.target.value)}
                       ></textarea>
                       <Button
                         type="submit"
                         className="w-1/2 md:w-1/4 flex justify-center"
+                        processing={processing}
                       >
                         Tambah komentar
                       </Button>

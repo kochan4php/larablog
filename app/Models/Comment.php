@@ -10,6 +10,7 @@ class Comment extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $with = ['article', 'user'];
 
     public function article()
     {
