@@ -32,9 +32,12 @@ const Article = (props) => {
                 as="button"
                 onClick={back}
                 replace
-                className="btn btn-sm bg-danger hover:bg-red-700 capitalize rounded border-none outline-none text-lg"
+                className="flex items-center gap-1 hover:text-blue-600 transition-colors duration-300"
               >
-                &laquo; Back
+                <FeatherIcon icon="chevron-left" size={21} />
+                <span className="text-lg !font-lexend ">
+                  Kembali ke semua artikel
+                </span>
               </Link>
             </div>
             <article>
@@ -100,29 +103,30 @@ const Article = (props) => {
               <section>
                 <div className="mb-7">
                   <h1 className="text-2xl md:text-3xl font-semibold">
-                    Komentar
+                    Komentar&nbsp;
+                    <span className="text-xl md:text-2xl">
+                      ({article.comments.length})
+                    </span>
                   </h1>
                 </div>
                 <RenderIfTrue isTrue={article.comments.length > 0}>
                   <For
                     each={article.comments}
-                    render={(data, index) => {
-                      return (
-                        <section key={index}>
-                          <div className="mb-7 bg-white rounded-md p-4 shadow-md shadow-slate-400 flex flex-col gap-3">
-                            <p className="text-lg md:text-xl font-medium">
-                              {data.user.name}
-                            </p>
-                            <p className="text-base md:text-lg font-medium">
-                              {data.comment}
-                            </p>
-                            <p className="text-sm mt-4 font-medium" key={index}>
-                              {moment(data.created_at).format("LL")}
-                            </p>
-                          </div>
-                        </section>
-                      );
-                    }}
+                    render={(data, index) => (
+                      <section key={index}>
+                        <div className="mb-7 bg-white rounded-md p-4 shadow shadow-slate-400 flex flex-col gap-3">
+                          <p className="text-lg md:text-xl font-medium">
+                            {data.user.name}
+                          </p>
+                          <p className="text-base md:text-lg font-medium">
+                            {data.comment}
+                          </p>
+                          <p className="text-sm mt-4 font-medium" key={index}>
+                            {moment(data.created_at).format("LL")}
+                          </p>
+                        </div>
+                      </section>
+                    )}
                   />
                 </RenderIfTrue>
                 <RenderIfFalse isFalse={article.comments.length > 0}>

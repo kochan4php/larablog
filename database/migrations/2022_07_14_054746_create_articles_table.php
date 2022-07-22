@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('image')->default(" ");
+            $table->text('image')->default(" ");
             $table->text('excerpt');
             $table->text('content');
             $table->timestamps();

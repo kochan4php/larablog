@@ -2,54 +2,8 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { Link, Head } from "@inertiajs/inertia-react";
+import { Head, Link } from "@inertiajs/inertia-react";
 import { useState } from "react";
-import FeatherIcon from "feather-icons-react";
-import { For } from "@/utils";
-
-const dataFooterLink = [
-  { name: "Artikel", path: "/" },
-  { name: "Kategori", path: "/" },
-  { name: "Tag", path: "/" },
-  { name: "Penulis", path: "/" },
-];
-
-const dataFooterIcon = [
-  { icon: "github", path: "https://github.com/kochan4php/larablog" },
-  { icon: "twitter", path: "https://twitter.com/deo_sbrn" },
-  { icon: "linkedin", path: "https://www.linkedin.com/in/deo-s-5316b3219/" },
-  { icon: "instagram", path: "https://instagram.com/kochan.php" },
-];
-
-const FooterLink = () => (
-  <For
-    each={dataFooterLink}
-    render={({ name, path }, index) => (
-      <Link
-        key={index}
-        href={path}
-        className="link link-hover text-base md:text-lg font-semibold"
-      >
-        {name}
-      </Link>
-    )}
-  />
-);
-
-const FooterIcon = () => (
-  <For
-    each={dataFooterIcon}
-    render={({ icon, path }, index) => (
-      <a key={index} href={path} target="_blank">
-        <FeatherIcon icon={icon} size={24} />
-      </a>
-    )}
-  />
-);
-
-const FooterText = () => (
-  <p>Copyright © 2022 - All right reserved by Kochan.php</p>
-);
 
 const Authenticated = ({ auth, children, title }) => {
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
@@ -207,20 +161,11 @@ const Authenticated = ({ auth, children, title }) => {
 
         <main className="py-8">
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div className="bg-white text-slate-900 overflow-hidden shadow-md shadow-slate-400 sm:rounded-md">
+            <div className="bg-white text-slate-900 overflow-hidden shadow shadow-slate-400 sm:rounded-md">
               {children}
             </div>
           </div>
         </main>
-
-        <footer className="footer footer-center p-10 bg-danger text-white">
-          <div className="grid grid-flow-col gap-4">
-            <FooterIcon />
-          </div>
-          <div className="text-base md:text-lg font-semibold">
-            <FooterText />
-          </div>
-        </footer>
       </div>
     </>
   );

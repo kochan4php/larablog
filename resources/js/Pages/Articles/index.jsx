@@ -20,12 +20,7 @@ const Index = (props) => {
           </section>
           <section>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 md:gap-6">
-              <div
-                className="card md:card-side shadow-lg shadow-slate-400 md:col-span-2 rounded-md bg-no-repeat bg-cover bg-center"
-                style={{
-                  backgroundImage: "url(https://placeimg.com/400/225/arch)",
-                }}
-              >
+              <div className="card md:card-side shadow-md shadow-slate-400 md:col-span-2 rounded-md bg-no-repeat bg-cover bg-center">
                 <div className="bg-slate-50 w-full">
                   <figure>
                     <img

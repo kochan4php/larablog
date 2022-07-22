@@ -1,7 +1,7 @@
 import { Link } from "@inertiajs/inertia-react";
 
 const Card = (props) => (
-  <div className="card bg-slate-50 rounded-md shadow-lg hover:shadow-lg shadow-slate-400 hover:shadow-slate-400">
+  <div className="card bg-slate-50 rounded-md shadow-md hover:shadow-md shadow-slate-400 hover:shadow-slate-400">
     <figure>
       <img
         src={

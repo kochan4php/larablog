@@ -2,7 +2,7 @@ import { For } from "@/utils";
 import { Link } from "@inertiajs/inertia-react";
 
 const Paginate = ({ links, color }) => (
-  <div class="btn-group shadow-md shadow-slate-400">
+  <div class="btn-group shadow shadow-slate-400 overflow-hidden rounded-md">
     <For
       each={links}
       render={(data, index) => (

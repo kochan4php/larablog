@@ -18,8 +18,8 @@ class CommentFactory extends Factory
     {
         return [
             'user_id' => mt_rand(1, 6),
-            'article_id' => mt_rand(1, 1000),
-            'comment' => $this->faker->text()
+            'article_id' => mt_rand(1, 20),
+            'comment' => $this->faker->text(100)
         ];
     }
 }
