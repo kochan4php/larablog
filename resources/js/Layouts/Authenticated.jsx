@@ -4,8 +4,10 @@ import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Head, Link } from "@inertiajs/inertia-react";
 import { useState } from "react";
+import FeatherIcon from "feather-icons-react";
+import { RenderIfTrue } from "@/utils";
 
-const Authenticated = ({ auth, children, title }) => {
+const Authenticated = ({ auth, children, title, flash }) => {
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
     useState(false);
 
@@ -158,6 +160,36 @@ const Authenticated = ({ auth, children, title }) => {
             </div>
           </div>
         </nav>
+
+        <RenderIfTrue isTrue={flash?.message}>
+          <div id="alert">
+            <div className="py-5 bg-[#38BDF8] text-dark !flex !justify-between">
+              <div className="container p-0">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-base md:text-lg !font-lexend">
+                  <div className="flex gap-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="stroke-current flex-shrink-0 h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span>{flash?.message}</span>
+                  </div>
+                  <Link as="button">
+                    <FeatherIcon icon="x" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </RenderIfTrue>
 
         <main className="py-8">
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">

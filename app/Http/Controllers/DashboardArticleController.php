@@ -59,9 +59,9 @@ class DashboardArticleController extends Controller
         $validated_data['excerpt'] = strip_tags(Str::limit($validated_data['content'], 200));
 
         if (Article::create($validated_data))
-            return Redirect::route('dashboard')->with('success', 'Berhasil membuat artikel baru');
+            return Redirect::route('dashboard')->with('message', 'Berhasil membuat artikel baru');
         else
-            return Redirect::route('dashboard')->with('failed', 'Gagal membuat artikel baru :(');
+            return Redirect::route('dashboard')->with('message', 'Gagal membuat artikel baru :(');
     }
 
     /**
@@ -73,8 +73,7 @@ class DashboardArticleController extends Controller
     public function show(Article $article)
     {
         return Inertia::render('Dashboard/Show', [
-            'article' => $article,
-            'author' => $article->user
+            'article' => $article->load('comments')
         ]);
     }
 
@@ -110,6 +109,7 @@ class DashboardArticleController extends Controller
         $same_title = $request->title === $article->title;
         $has_image = $request->file('image');
 
+        // check if user is update title and image or not, if true then validate title and image
         if (!$same_title) $rules['title'] = ['required', 'unique:articles', 'min:10', 'max:255'];
         if ($has_image)  $rules['image'] = ['required', 'image', 'file', 'max:2560'];
 
@@ -127,9 +127,9 @@ class DashboardArticleController extends Controller
         $validated_data['excerpt'] = strip_tags(Str::limit($validated_data['content'], 200));
 
         if (Article::find($article->id)->update($validated_data))
-            return Redirect::route('dashboard')->with('success', 'Berhasil memperbarui artikel');
+            return Redirect::route('dashboard')->with('message', 'Berhasil memperbarui artikel');
         else
-            return Redirect::route('dashboard')->with('failed', 'Gagal memperbarui artikel :(');
+            return Redirect::route('dashboard')->with('message', 'Gagal memperbarui artikel :(');
     }
 
     /**
@@ -145,8 +145,8 @@ class DashboardArticleController extends Controller
         if (!is_null($article)) {
             $article->delete();
             Storage::delete($article->image);
-            return Redirect::back()->with('success', 'Artikel berhasil dihapus');
+            return Redirect::back()->with('message', 'Artikel berhasil dihapus');
         } else
-            return Redirect::back()->with('failed', 'Artikel gagal dihapus');
+            return Redirect::back()->with('message', 'Artikel gagal dihapus');
     }
 }

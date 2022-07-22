@@ -15,6 +15,6 @@ class CommentController extends Controller
         $validated_data['article_id'] = $request->article_id;
 
         if (Comment::create($validated_data))
-            return Redirect::back()->with('success', 'Berhasil menambahkan komentar');
+            return Redirect::back()->with('message', 'Berhasil menambahkan komentar');
     }
 }

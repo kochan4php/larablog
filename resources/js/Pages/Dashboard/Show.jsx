@@ -6,7 +6,6 @@ import FeatherIcon from "feather-icons-react";
 const Show = (props) => {
   const { article } = props;
   const back = () => window.history.back();
-  console.log(article);
 
   return (
     <Authenticated auth={props.auth} errors={props.errors} title="My Dashboard">

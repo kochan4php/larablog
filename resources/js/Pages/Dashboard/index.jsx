@@ -12,8 +12,15 @@ const Index = (props) => {
       await axios.delete(`/dashboard/articles/${slug}`);
   };
 
+  console.log(props);
+
   return (
-    <Authenticated auth={props.auth} errors={props.errors} title="My Dashboard">
+    <Authenticated
+      auth={props.auth}
+      errors={props.errors}
+      flash={props.flash}
+      title="My Dashboard"
+    >
       <div className="p-6 lg:p-7">
         <div className="mb-5">
           <div className="flex justify-between w-full">
@@ -29,31 +36,6 @@ const Index = (props) => {
           </div>
           <hr className="border-t border-t-slate-300" />
         </div>
-        <RenderIfTrue isTrue={props.flash.success}>
-          <div className="mb-5" id="alert">
-            <div className="p-4 bg-green-400 rounded-md !flex !justify-between">
-              <div className="flex gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="stroke-current flex-shrink-0 h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span>{props.flash.success}</span>
-              </div>
-              <Link as="button">
-                <FeatherIcon icon="x" />
-              </Link>
-            </div>
-          </div>
-        </RenderIfTrue>
         <div className="overflow-x-auto relative lg:rounded-md slide-element">
           <table className="w-full text-center text-sm">
             <thead className="text-sm bg-danger text-slate-100 uppercase">

@@ -8,6 +8,8 @@ import FeatherIcon from "feather-icons-react";
 const Article = (props) => {
   const { article } = props;
 
+  console.log(props);
+
   const { data, post, processing, setData } = useForm({
     article_id: article.id,
     user_id: props.auth.user.id,
@@ -31,7 +33,6 @@ const Article = (props) => {
               <Link
                 as="button"
                 onClick={back}
-                replace
                 className="flex items-center gap-1 hover:text-blue-600 transition-colors duration-300"
               >
                 <FeatherIcon icon="chevron-left" size={21} />
@@ -42,7 +43,7 @@ const Article = (props) => {
             </div>
             <article>
               <div className="mb-7">
-                <RenderIfTrue isTrue={props.flash.success}>
+                <RenderIfTrue isTrue={props.flash.message}>
                   <div className="mb-5" id="alert">
                     <div className="p-4 bg-green-400 rounded-md !flex !justify-between">
                       <div className="flex gap-2">
@@ -59,7 +60,7 @@ const Article = (props) => {
                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                           />
                         </svg>
-                        <span>{props.flash.success}</span>
+                        <span>{props.flash.message}</span>
                       </div>
                       <Link as="button">
                         <FeatherIcon icon="x" />
@@ -111,7 +112,7 @@ const Article = (props) => {
                 </div>
                 <RenderIfTrue isTrue={article.comments.length > 0}>
                   <For
-                    each={article.comments}
+                    each={article.comments.reverse()}
                     render={(data, index) => (
                       <section key={index}>
                         <div className="mb-7 bg-white rounded-md p-4 shadow shadow-slate-400 flex flex-col gap-3">

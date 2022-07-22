@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345')
         ]);
         User::factory(5)->create();
-        Article::factory(20)->create();
-        Comment::factory(10000)->create();
+        Article::factory(10)->create();
+        Comment::factory(100)->create();
         Category::create([
             'name' => 'Programming',
             'slug' => 'programming'
