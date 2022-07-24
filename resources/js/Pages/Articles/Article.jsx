@@ -2,17 +2,15 @@ import Button from "@/Components/Button";
 import Main from "@/Layouts/Main";
 import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
 import { Link, useForm } from "@inertiajs/inertia-react";
-import moment from "moment";
 import FeatherIcon from "feather-icons-react";
+import moment from "moment";
 
 const Article = (props) => {
   const { article } = props;
 
-  console.log(props);
-
   const { data, post, processing, setData } = useForm({
     article_id: article.id,
-    user_id: props.auth.user.id,
+    user_id: props.auth.user ? props.auth.user.id : null,
     comment: "",
   });
 
@@ -36,6 +34,7 @@ const Article = (props) => {
                 as="button"
                 onClick={back}
                 className="flex items-center gap-1 hover:text-blue-600 transition-colors duration-300"
+                preserveScroll
               >
                 <FeatherIcon icon="chevron-left" size={21} />
                 <span className="text-lg !font-lexend ">

@@ -46,7 +46,6 @@ const Index = (props) => {
                       <Link
                         href={`/articles/${articles?.data[0]?.slug}`}
                         className="btn btn-primary btn-sm rounded"
-                        preserveScroll
                       >
                         Read More
                       </Link>
