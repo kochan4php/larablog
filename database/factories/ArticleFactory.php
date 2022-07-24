@@ -23,7 +23,7 @@ class ArticleFactory extends Factory
             'slug' => $this->faker->unique()->slug(3),
             'excerpt' => $this->faker->paragraph(),
             'content' => '<p>' . implode('</p><br/><p>', $this->faker->paragraphs(mt_rand(10, 20))) . '</p>',
-            'image' => $this->faker->imageUrl(400, 225)
+            'image' => ""
         ];
     }
 }

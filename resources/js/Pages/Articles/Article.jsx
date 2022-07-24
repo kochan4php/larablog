@@ -20,7 +20,9 @@ const Article = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    post("/articles/comment");
+    post("/articles/comment", {
+      preserveScroll: true,
+    });
     setData("comment", "");
   };
 
@@ -43,33 +45,6 @@ const Article = (props) => {
             </div>
             <article>
               <div className="mb-7">
-                <RenderIfTrue isTrue={props.flash.message}>
-                  <div className="mb-5" id="alert">
-                    <div className="p-4 bg-green-400 rounded-md !flex !justify-between">
-                      <div className="flex gap-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="stroke-current flex-shrink-0 h-6 w-6"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                        <span>{props.flash.message}</span>
-                      </div>
-                      <Link as="button">
-                        <FeatherIcon icon="x" />
-                      </Link>
-                    </div>
-                  </div>
-                </RenderIfTrue>
-              </div>
-              <div className="mb-7">
                 <h2 className="text-4xl md:text-5xl font-medium text-center">
                   {article.title}
                 </h2>
@@ -82,9 +57,9 @@ const Article = (props) => {
               <div className="mb-7 rounded overflow-hidden">
                 <img
                   src={
-                    article.image
+                    article.image !== ""
                       ? `/storage/${article.image}`
-                      : "https://placeimg.com/400/225/arch"
+                      : "/storage/articles-image/default-article-image.png"
                   }
                   width="100%"
                   alt="car!"
@@ -112,7 +87,7 @@ const Article = (props) => {
                 </div>
                 <RenderIfTrue isTrue={article.comments.length > 0}>
                   <For
-                    each={article.comments.reverse()}
+                    each={article.comments}
                     render={(data, index) => (
                       <section key={index}>
                         <div className="mb-7 bg-white rounded-md p-4 shadow shadow-slate-400 flex flex-col gap-3">
@@ -123,7 +98,7 @@ const Article = (props) => {
                             {data.comment}
                           </p>
                           <p className="text-sm mt-4 font-medium" key={index}>
-                            {moment(data.created_at).format("LL")}
+                            {moment(data.created_at).calendar()}
                           </p>
                         </div>
                       </section>
@@ -157,6 +132,7 @@ const Article = (props) => {
                         rows="3"
                         className="outline-none px-3 py-1.5 rounded-sm text-base !font-lexend ring-2 focus:ring-4 focus:ring-opacity-50 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0 !bg-slate-50 !text-slate-900"
                         placeholder="Tuliskan komentarmu disini"
+                        value={data.comment}
                         onChange={(e) => setData("comment", e.target.value)}
                       ></textarea>
                       <Button

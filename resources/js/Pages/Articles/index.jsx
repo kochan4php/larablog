@@ -3,13 +3,11 @@ import Paginate from "@/Components/Paginate";
 import Main from "@/Layouts/Main";
 import { For } from "@/utils";
 import { Link } from "@inertiajs/inertia-react";
+import moment from "moment";
 import { Fragment } from "react";
-import { RenderIfTrue } from "@/utils";
 
 const Index = (props) => {
   const { articles } = props;
-
-  console.log(props);
 
   return (
     <Main title="Home" data={props}>
@@ -25,9 +23,9 @@ const Index = (props) => {
                   <figure>
                     <img
                       src={
-                        articles?.data[0]?.image
+                        articles?.data[0]?.image !== ""
                           ? `/storage/${articles?.data[0]?.image}`
-                          : articles?.data[0]?.image
+                          : "/storage/articles-image/default-article-image.png"
                       }
                       alt="car!"
                       width="100%"
@@ -38,8 +36,10 @@ const Index = (props) => {
                     <h2 className="card-title text-2xl mb-2">
                       {articles?.data[0]?.title}
                     </h2>
-                    <div className="badge badge-primary py-2.5 !font-lexend text-sm mb-2">
-                      Oleh {articles?.data[0]?.user?.name}
+                    <div className="badge badge-primary py-2.5 !font-lexend text-sm mb-2 truncate">
+                      Posted&nbsp;
+                      {moment(articles?.data[0]?.created_at).format("LL")}
+                      &nbsp;by&nbsp;{articles?.data[0]?.user?.name}
                     </div>
                     <p className="text-lg">{articles?.data[0]?.excerpt}</p>
                     <div className="card-actions flex items-center justify-between mt-4">

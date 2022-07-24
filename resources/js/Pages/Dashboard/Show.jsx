@@ -1,6 +1,5 @@
 import Authenticated from "@/Layouts/Authenticated";
 import { Link } from "@inertiajs/inertia-react";
-import axios from "axios";
 import FeatherIcon from "feather-icons-react";
 
 const Show = (props) => {
@@ -34,9 +33,9 @@ const Show = (props) => {
             <div className="mb-7 rounded overflow-hidden">
               <img
                 src={
-                  article.image
-                    ? `/storage/${article.image}`
-                    : "https://placeimg.com/400/225/arch"
+                  d !== ""
+                    ? `/storage/${article?.data[0]?.image}`
+                    : "/storage/articles-image/default-article-image.png"
                 }
                 width="100%"
                 alt="car!"

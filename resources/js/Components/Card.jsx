@@ -1,13 +1,14 @@
 import { Link } from "@inertiajs/inertia-react";
+import moment from "moment";
 
 const Card = (props) => (
   <div className="card bg-slate-50 rounded-md shadow-md hover:shadow-md shadow-slate-400 hover:shadow-slate-400">
     <figure>
       <img
         src={
-          props.article.image
+          props.article.image !== ""
             ? `/storage/${props.article.image}`
-            : "https://placeimg.com/400/225/arch"
+            : "/storage/articles-image/default-article-image.png"
         }
         width="100%"
         alt="car!"
@@ -17,7 +18,8 @@ const Card = (props) => (
     <div className="card-body">
       <h2 className="card-title text-2xl mb-2">{props.article.title}</h2>
       <div className="badge badge-primary py-2.5 !font-lexend text-sm mb-2">
-        Oleh {props.article.user.name}
+        {moment(props.article.created_at).format("LL")}&nbsp; by &nbsp;
+        {props.article.user.name}
       </div>
       <p className="text-lg">{props.article.excerpt}</p>
       <div className="card-actions flex justify-between items-center mt-3 text-base">
