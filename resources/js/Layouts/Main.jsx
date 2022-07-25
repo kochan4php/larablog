@@ -3,7 +3,7 @@ import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 
 const Main = (props) => (
-  <div className="bg-slate-100">
+  <div className="bg-slate-50">
     <Head>
       <title>{props.title}</title>
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

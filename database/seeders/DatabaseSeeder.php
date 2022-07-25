@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Like;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
         User::factory(5)->create();
         Article::factory(20)->create();
         Comment::factory(100)->create();
+        Like::factory(40)->create();
         Category::create([
             'name' => 'Programming',
             'slug' => 'programming'

@@ -8,6 +8,8 @@ import moment from "moment";
 const Article = (props) => {
   const { article } = props;
 
+  console.log(article);
+
   const { data, post, processing, setData } = useForm({
     article_id: article.id,
     user_id: props.auth.user ? props.auth.user.id : null,
@@ -54,16 +56,43 @@ const Article = (props) => {
                 </p>
               </div>
               <div className="mb-7 rounded overflow-hidden">
-                <img
-                  src={
-                    article.image !== ""
-                      ? `/storage/${article.image}`
-                      : "/storage/articles-image/default-article-image.png"
-                  }
-                  width="100%"
-                  alt="car!"
-                  className="object-cover object-center"
-                />
+                <div>
+                  <img
+                    src={
+                      article.image !== ""
+                        ? `/storage/${article.image}`
+                        : "/storage/articles-image/default-article-image.png"
+                    }
+                    width="100%"
+                    alt="car!"
+                    className="object-cover object-center"
+                  />
+                </div>
+                <RenderIfTrue isTrue={article.likes?.length > 0}>
+                  <div className="bg-slate-200 p-3 text-base flex flex-col md:flex-row md:justify-between md:items-center">
+                    <div>
+                      <form className="flex !items-center gap-2 mb-2">
+                        <button className="btn btn-sm border-none outline-none rounded btn-primary">
+                          <FeatherIcon icon="heart" />
+                        </button>
+                        <Link className="btn btn-sm rounded btn-secondary">
+                          <FeatherIcon icon="message-circle" />
+                        </Link>
+                      </form>
+                    </div>
+                    <div className="text-base md:text-lg font-medium md:font-semibold">
+                      Disukai oleh {article.likes[0]?.user.name}&nbsp;
+                      {article.likes?.length > 1
+                        ? `dan ${article.likes?.slice(1).length} lainnya`
+                        : ""}
+                    </div>
+                  </div>
+                </RenderIfTrue>
+                <RenderIfFalse isFalse={article.likes?.length > 0}>
+                  <div className="bg-slate-200 p-3 text-base rounded-b">
+                    <div className="text-lg">{article.likes?.length} Likes</div>
+                  </div>
+                </RenderIfFalse>
               </div>
               <div className="mb-12 leading-loose">
                 <p
@@ -89,7 +118,7 @@ const Article = (props) => {
                     each={article.comments}
                     render={(data, index) => (
                       <section key={index}>
-                        <div className="mb-7 bg-white rounded-md p-4 shadow shadow-slate-400 flex flex-col gap-3">
+                        <div className="mb-7 bg-white rounded-md p-4 shadow-md shadow-slate-400 flex flex-col gap-3">
                           <p className="text-lg md:text-xl font-medium">
                             {data.user.name}
                           </p>
@@ -136,7 +165,7 @@ const Article = (props) => {
                       ></textarea>
                       <Button
                         type="submit"
-                        className="w-1/2 md:w-1/4 flex justify-center"
+                        className="w-full md:w-1/4 flex justify-center"
                         processing={processing}
                       >
                         Tambah komentar
