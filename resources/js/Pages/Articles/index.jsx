@@ -41,7 +41,6 @@ const Index = (props) => {
                       {moment(articles?.data[0]?.created_at).format("LL")}
                       &nbsp;by&nbsp;{articles?.data[0]?.user?.name}
                     </div>
-                    <p className="text-lg">{articles?.data[0]?.excerpt}</p>
                     <div className="card-actions flex items-center justify-between mt-4">
                       <Link
                         href={`/articles/${articles?.data[0]?.slug}`}

@@ -59,12 +59,11 @@ const CardArticle = (props) => {
         boxShadow:
           "0 4px 6px -1px rgb(0 0 0 / 0.15), 0 2px 4px -2px rgb(0 0 0 / 0.15)",
       }}
-      className="shadow-lg"
     >
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+            {props.article.user.name.split("")[0]}
           </Avatar>
         }
         action={
@@ -85,18 +84,17 @@ const CardArticle = (props) => {
         alt={props.article.title}
       />
       <CardContent>
-        <Typography variant="h6" mb={2}>
+        <Typography variant="h6">
           <Link href={`/articles/${props.article.slug}`}>
             {props.article.title}
           </Link>
         </Typography>
-        <Typography variant="subtitle1">{props.article.excerpt}</Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="like artikel">
           <FeatherIcon icon="heart" />
         </IconButton>
-        <IconButton aria-label="share">
+        <IconButton aria-label="save as bookmark">
           <FeatherIcon icon="bookmark" />
         </IconButton>
       </CardActions>
