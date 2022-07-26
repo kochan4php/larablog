@@ -12,7 +12,7 @@ const Index = (props) => {
   return (
     <Main title="Home" data={props}>
       <section className="pt-6 pb-10">
-        <div className="container">
+        <div>
           <section className="mb-8 mt-1 lg:px-1">
             <h2 className="text-3xl md:text-4xl font-medium">All Articles</h2>
           </section>
