@@ -23,17 +23,19 @@
     },
     "dependencies": {
         "@emotion/react": "^11.9.3",
-        "@emotion/styled": "^11.9.3",
-        "@mui/material": "^5.9.2",
-        "@uiw/react-md-editor": "^3.14.5",
+        "@mantine/carousel": "^5.0.0",
+        "@mantine/core": "^5.0.0",
+        "@mantine/ds": "^5.0.0",
+        "@mantine/hooks": "^5.0.0",
+        "@mantine/modals": "^5.0.0",
+        "@mantine/notifications": "^5.0.0",
+        "@mantine/rte": "^5.0.0",
         "daisyui": "^2.19.0",
+        "embla-carousel-react": "^7.0.0-rc05",
         "feather-icons-react": "^0.5.0",
         "moment": "^2.29.4",
         "prop-types": "^15.8.1",
-        "react-trix": "^0.10.0",
         "recoil": "^0.7.4",
-        "recoil-persist": "^4.2.0",
-        "sweetalert2": "^11.4.23",
-        "trix": "^2.0.0-beta.0"
+        "recoil-persist": "^4.2.0"
     }
 }

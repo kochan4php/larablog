@@ -33,8 +33,8 @@ const Show = (props) => {
             <div className="mb-7 rounded overflow-hidden">
               <img
                 src={
-                  d !== ""
-                    ? `/storage/${article?.data[0]?.image}`
+                  article?.image !== ""
+                    ? `/storage/${article?.image}`
                     : "/storage/articles-image/default-article-image.png"
                 }
                 width="100%"

@@ -1,13 +1,11 @@
-import "./bootstrap";
 import "../css/app.css";
-import "trix/dist/trix";
-import "trix/dist/trix.css";
+import "./bootstrap";
 
-import React from "react";
-import { render } from "react-dom";
 import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
+import { MantineProvider } from "@mantine/core";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+import { render } from "react-dom";
 import { RecoilRoot } from "recoil";
 
 createInertiaApp({
@@ -20,7 +18,9 @@ createInertiaApp({
   setup({ el, App, props }) {
     return render(
       <RecoilRoot>
-        <App {...props} />
+        <MantineProvider>
+          <App {...props} />
+        </MantineProvider>
       </RecoilRoot>,
       el
     );

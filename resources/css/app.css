@@ -2,13 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  * {
-    font-family: "Nunito", Arial, Helvetica, sans-serif !important;
-    @apply selection:!bg-pink-500 selection:!text-pink-100;
-  }
+* {
+  font-family: "Nunito", "Lexend Deca", Arial, Helvetica, sans-serif !important;
+  @apply selection:!bg-pink-500 selection:!text-pink-100;
+}
 
-  body {
-    @apply bg-slate-100;
-  }
+body {
+  @apply bg-slate-50;
 }

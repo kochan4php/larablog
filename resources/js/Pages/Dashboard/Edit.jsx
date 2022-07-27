@@ -7,7 +7,7 @@ import Authenticated from "@/Layouts/Authenticated";
 import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
 import { useForm, Link } from "@inertiajs/inertia-react";
 import { Fragment, useEffect } from "react";
-import { TrixEditor } from "react-trix";
+import { RichTextEditor } from "@mantine/rte";
 import { Inertia } from "@inertiajs/inertia";
 
 const Edit = (props) => {
@@ -119,8 +119,8 @@ const Edit = (props) => {
                   value="Isi Content"
                   className="mb-1"
                 />
-                <TrixEditor
-                  className="outline-none px-3 py-1.5 rounded-sm text-base !font-lexend ring-2 focus:ring-4 focus:ring-opacity-50 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0  block w-full"
+                <RichTextEditor
+                  className="outline-none rounded-sm text-base !font-lexend ring-2 focus:ring-4 focus:ring-opacity-50 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0  block w-full"
                   placeholder="your content starts here"
                   value={article.content}
                   onChange={(e) => setData("content", e)}

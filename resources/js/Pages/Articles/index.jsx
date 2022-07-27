@@ -19,7 +19,7 @@ const Index = (props) => {
           <section>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 md:gap-6">
               <div className="card md:card-side shadow-md shadow-slate-400 md:col-span-2 rounded-md bg-no-repeat bg-cover bg-center">
-                <div className="bg-slate-50 w-full">
+                <div className="bg-white w-full">
                   <figure>
                     <img
                       src={
@@ -27,7 +27,7 @@ const Index = (props) => {
                           ? `/storage/${articles?.data[0]?.image}`
                           : "/storage/articles-image/default-article-image.png"
                       }
-                      alt="car!"
+                      alt={articles?.data[0]?.title}
                       width="100%"
                       className="object-cover object-center max-h-[440px]"
                     />
@@ -41,6 +41,7 @@ const Index = (props) => {
                       {moment(articles?.data[0]?.created_at).format("LL")}
                       &nbsp;by&nbsp;{articles?.data[0]?.user?.name}
                     </div>
+                    <p className="text-lg">{articles?.data[0]?.excerpt}</p>
                     <div className="card-actions flex items-center justify-between mt-4">
                       <Link
                         href={`/articles/${articles?.data[0]?.slug}`}

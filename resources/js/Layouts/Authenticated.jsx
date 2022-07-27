@@ -16,7 +16,7 @@ const Authenticated = ({ auth, children, title, flash }) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <div className="min-h-screen bg-slate-200">
+      <div className="min-h-screen bg-slate-100">
         <nav className="bg-danger !text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between py-3">

@@ -5,10 +5,9 @@ import Select from "@/Components/Select";
 import ValidationErrors from "@/Components/ValidationErrors";
 import Authenticated from "@/Layouts/Authenticated";
 import { For } from "@/utils";
-import { useForm, Link } from "@inertiajs/inertia-react";
-import { Fragment, useEffect, useState } from "react";
-import { TrixEditor } from "react-trix";
-import MDEditor from "@uiw/react-md-editor";
+import { Link, useForm } from "@inertiajs/inertia-react";
+import { RichTextEditor } from "@mantine/rte";
+import { Fragment, useEffect } from "react";
 
 const Create = (props) => {
   const { data, setData, post, processing, errors } = useForm({
@@ -17,8 +16,6 @@ const Create = (props) => {
     image: null,
     content: "",
   });
-
-  const [value, setValue] = useState("**Hello world!!!**");
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -100,22 +97,12 @@ const Create = (props) => {
                   value="Isi Content"
                   className="mb-1"
                 />
-                <TrixEditor
-                  className="outline-none px-3 py-1.5 rounded-sm text-base !font-lexend ring-2 focus:ring-4 focus:ring-opacity-50 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0  block w-full"
+                <RichTextEditor
+                  className="outline-none rounded-sm text-base !font-lexend ring-2 focus:ring-4 focus:ring-opacity-50 focus:ring-sky-500 transition-all selection:bg-rose-700 selection:text-rose-300 border-0  block w-full"
                   placeholder="your content starts here"
                   value={data.content}
-                  onChange={(e) => {
-                    setData("content", e);
-                    console.log(e);
-                  }}
+                  onChange={(e) => setData("content", e)}
                 />
-                {/* <div>
-                  <MDEditor
-                    value={value}
-                    onChange={setValue}
-                    placeholder="Hai"
-                  />
-                </div> */}
               </div>
               <div className="flex items-center justify-start mt-4 gap-3">
                 <Button type="submit" processing={processing}>

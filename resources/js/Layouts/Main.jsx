@@ -1,23 +1,21 @@
-import { Head } from "@inertiajs/inertia-react";
-import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
-import Container from "@mui/material/Container";
+import Navbar from "@/Components/Navbar";
+import { Container } from "@mantine/core";
+import { Head } from "@inertiajs/inertia-react";
 
 const Main = (props) => (
-  <div className="bg-slate-50">
+  <>
     <Head>
       <title>{props.title}</title>
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     </Head>
     <Navbar data={props.data} />
-    <Container maxWidth="xl">
-      <div className="pt-16">
-        <main>{props.children}</main>
-        <aside></aside>
-      </div>
-    </Container>
+
+    <div className="pt-16 container">
+      <main>{props.children}</main>
+      <aside></aside>
+    </div>
     <Footer />
-  </div>
+  </>
 );
 
 export default Main;

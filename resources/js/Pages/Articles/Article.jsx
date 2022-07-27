@@ -118,7 +118,7 @@ const Article = (props) => {
                     each={article.comments}
                     render={(data, index) => (
                       <section key={index}>
-                        <div className="mb-7 bg-white rounded-md p-4 shadow-md shadow-slate-400 flex flex-col gap-3">
+                        <div className="mb-7 bg-white rounded-md p-4 shadow shadow-slate-400 flex flex-col gap-3">
                           <p className="text-lg md:text-xl font-medium">
                             {data.user.name}
                           </p>
