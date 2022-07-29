@@ -27,8 +27,6 @@
         "@mantine/core": "^5.0.0",
         "@mantine/ds": "^5.0.0",
         "@mantine/hooks": "^5.0.0",
-        "@mantine/modals": "^5.0.0",
-        "@mantine/notifications": "^5.0.0",
         "@mantine/rte": "^5.0.0",
         "daisyui": "^2.19.0",
         "embla-carousel-react": "^7.0.0-rc05",

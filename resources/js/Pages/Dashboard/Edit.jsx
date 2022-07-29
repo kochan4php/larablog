@@ -5,10 +5,10 @@ import Select from "@/Components/Select";
 import ValidationErrors from "@/Components/ValidationErrors";
 import Authenticated from "@/Layouts/Authenticated";
 import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
-import { useForm, Link } from "@inertiajs/inertia-react";
-import { Fragment, useEffect } from "react";
-import { RichTextEditor } from "@mantine/rte";
 import { Inertia } from "@inertiajs/inertia";
+import { Link, useForm } from "@inertiajs/inertia-react";
+import { RichTextEditor } from "@mantine/rte";
+import { Fragment, useEffect } from "react";
 
 const Edit = (props) => {
   const { article } = props;
@@ -42,7 +42,7 @@ const Edit = (props) => {
   }, []);
 
   return (
-    <Authenticated auth={props.auth} errors={props.errors} title="Buat Artikel">
+    <Authenticated auth={props.auth} errors={props.errors} title="Edit Article">
       <div className="p-6 lg:p-7">
         <div className="mb-4">
           <h2 className="text-2xl text-center md:text-3xl mb-3">

@@ -2,10 +2,10 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { Head, Link } from "@inertiajs/inertia-react";
-import { useState } from "react";
-import FeatherIcon from "feather-icons-react";
 import { RenderIfTrue } from "@/utils";
+import { Head, Link } from "@inertiajs/inertia-react";
+import FeatherIcon from "feather-icons-react";
+import { useState } from "react";
 
 const Authenticated = ({ auth, children, title, flash }) => {
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
@@ -16,7 +16,7 @@ const Authenticated = ({ auth, children, title, flash }) => {
       <Head>
         <title>{title}</title>
       </Head>
-      <div className="min-h-screen bg-slate-100">
+      <div className="min-h-screen bg-slate-200">
         <nav className="bg-danger !text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between py-3">
@@ -35,7 +35,7 @@ const Authenticated = ({ auth, children, title, flash }) => {
                       route().current("articles.edit")
                     }
                   >
-                    Artikel Saya
+                    Kelola Artikel
                   </NavLink>
                 </div>
                 <div className="hidden space-x-8 md:-my-px md:ml-10 md:flex">
@@ -47,7 +47,12 @@ const Authenticated = ({ auth, children, title, flash }) => {
                   </NavLink>
                 </div>
                 <div className="hidden space-x-8 md:-my-px md:ml-10 md:flex">
-                  <NavLink href="/dashboard/profile">Profil Saya</NavLink>
+                  <NavLink
+                    href="/dashboard/profile"
+                    active={route().current("profile")}
+                  >
+                    Profil Saya
+                  </NavLink>
                 </div>
               </div>
               <div className="hidden md:flex md:items-center md:ml-6">
@@ -139,7 +144,7 @@ const Authenticated = ({ auth, children, title, flash }) => {
                   route().current("articles.edit")
                 }
               >
-                Artikel Saya
+                Kelola Artikel
               </ResponsiveNavLink>
               <ResponsiveNavLink
                 href={"/dashboard/articles/create"}
@@ -147,7 +152,10 @@ const Authenticated = ({ auth, children, title, flash }) => {
               >
                 Buat Artikel
               </ResponsiveNavLink>
-              <ResponsiveNavLink href={"/dashboard/profile"}>
+              <ResponsiveNavLink
+                href={"/dashboard/profile"}
+                active={route().current("profile")}
+              >
                 Profil Saya
               </ResponsiveNavLink>
               <ResponsiveNavLink

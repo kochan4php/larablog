@@ -1,13 +1,17 @@
+import back from "@/Helpers/back";
 import Authenticated from "@/Layouts/Authenticated";
 import { Link } from "@inertiajs/inertia-react";
 import FeatherIcon from "feather-icons-react";
 
 const Show = (props) => {
   const { article } = props;
-  const back = () => window.history.back();
 
   return (
-    <Authenticated auth={props.auth} errors={props.errors} title="My Dashboard">
+    <Authenticated
+      auth={props.auth}
+      errors={props.errors}
+      title="Detail Article"
+    >
       <div className="p-6 lg:p-7">
         <div className="mb-5">
           <div className="flex justify-between w-full">

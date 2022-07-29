@@ -201,7 +201,7 @@
     "@babel/plugin-syntax-jsx" "^7.18.6"
     "@babel/types" "^7.18.6"
 
-"@babel/runtime@^7.10.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.18.3", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.7":
+"@babel/runtime@^7.10.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.18.3":
   version "7.18.9"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.18.9.tgz"
   integrity sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==
@@ -450,21 +450,6 @@
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-5.0.0.tgz#24fe9f945810d02ad7d933b8aecc646cf10f96dc"
   integrity sha512-IKqqnukPPyBMYRKz4VIhz7hNRe3p8B7RUyvFLaWc9l69ZO/b5atNuesE1ThuMQYc7tBobQbU4myHuhQc/csyLA==
-
-"@mantine/modals@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/modals/-/modals-5.0.0.tgz#8a96a789bf9bdd4a08c6a9d4e10d0070520052fe"
-  integrity sha512-Adzn0ALKSonOLXmHleDliOMTv5U22FgmNBCJK8aTw6ld6HoCTrccrj/VBOsGZVm+c+/AO6NcQ6hmDkqLyRW0og==
-  dependencies:
-    "@mantine/utils" "5.0.0"
-
-"@mantine/notifications@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@mantine/notifications/-/notifications-5.0.0.tgz#27d5dcb60ffccd305974105fa949b1d7278a4a61"
-  integrity sha512-uM/VJBrU2WGx0ji1z/y0Ov6qOMwB5+OJuRfujHpwaRv9hnDxIiesgZlkOS4MS67R4TWZRPuAUNdkccVTFNoRCA==
-  dependencies:
-    "@mantine/utils" "5.0.0"
-    react-transition-group "4.4.2"
 
 "@mantine/rte@^5.0.0":
   version "5.0.0"
@@ -951,14 +936,6 @@ dlv@^1.1.3:
   version "1.1.3"
   resolved "https://registry.npmjs.org/dlv/-/dlv-1.1.3.tgz"
   integrity sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==
-
-dom-helpers@^5.0.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-5.2.1.tgz#d9400536b2bf8225ad98fe052e029451ac40e902"
-  integrity sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==
-  dependencies:
-    "@babel/runtime" "^7.8.7"
-    csstype "^3.0.2"
 
 electron-to-chromium@^1.4.172:
   version "1.4.187"
@@ -1596,7 +1573,7 @@ postcss@^8.4.13, postcss@^8.4.14, postcss@^8.4.6:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-prop-types@^15.6.2, prop-types@^15.8.1:
+prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -1686,16 +1663,6 @@ react-textarea-autosize@8.3.4:
     "@babel/runtime" "^7.10.2"
     use-composed-ref "^1.3.0"
     use-latest "^1.2.1"
-
-react-transition-group@4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.2.tgz#8b59a56f09ced7b55cbd53c36768b922890d5470"
-  integrity sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==
-  dependencies:
-    "@babel/runtime" "^7.5.5"
-    dom-helpers "^5.0.1"
-    loose-envify "^1.4.0"
-    prop-types "^15.6.2"
 
 react@^17.0.2:
   version "17.0.2"

@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\DashboardArticleController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\{ArticleController, DashboardArticleController, DashboardProfileController, CommentController, LikeController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +20,10 @@ Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('art
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardArticleController::class, 'index'])->name('dashboard');
     Route::resource('/dashboard/articles', DashboardArticleController::class);
+    Route::get('/dashboard/profile', [DashboardProfileController::class, 'index'])->name('profile');
+    Route::post('/dashboard/profile', [DashboardProfileController::class, 'change_profile'])->name('change-profile');
     Route::post('/articles/comment', [CommentController::class, 'store'])->name('article.comment');
+    Route::post('/articles/like', [LikeController::class, 'add_like']);
 });
 
 require __DIR__ . '/auth.php';

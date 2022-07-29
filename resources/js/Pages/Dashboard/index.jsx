@@ -1,4 +1,3 @@
-import Paginate from "@/Components/Paginate";
 import Authenticated from "@/Layouts/Authenticated";
 import { For, RenderIfFalse, RenderIfTrue } from "@/utils";
 import { Link } from "@inertiajs/inertia-react";
@@ -55,9 +54,9 @@ const Index = (props) => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-300">
-              <RenderIfTrue isTrue={props.articles.data.length > 0}>
+              <RenderIfTrue isTrue={props.articles.length > 0}>
                 <For
-                  each={props.articles.data}
+                  each={props.articles}
                   render={(article, index) => (
                     <Fragment key={index}>
                       <tr
@@ -102,7 +101,7 @@ const Index = (props) => {
                   )}
                 />
               </RenderIfTrue>
-              <RenderIfFalse isFalse={props.articles.data.length > 0}>
+              <RenderIfFalse isFalse={props.articles.length > 0}>
                 <tr className="bg-gray-200 text-sm">
                   <td
                     className="py-4 px-6 text-left font-medium whitespace-nowrap text-base"
@@ -117,11 +116,11 @@ const Index = (props) => {
             </tbody>
           </table>
         </div>
-        <RenderIfTrue isTrue={props.articles.data.length >= 10}>
+        {/* <RenderIfTrue isTrue={props.articles.data.length >= 10}>
           <div className="mt-7 mb-2 w-full flex justify-center items-center">
             <Paginate links={props.articles.links} />
           </div>
-        </RenderIfTrue>
+        </RenderIfTrue> */}
       </div>
     </Authenticated>
   );

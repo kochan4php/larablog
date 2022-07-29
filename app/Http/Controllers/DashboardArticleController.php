@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
-use App\Models\Article;
-use App\Models\Category;
+use App\Models\{Article, Category};
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\{Redirect, Storage};
 use Illuminate\Support\Str;
 
 class DashboardArticleController extends Controller
@@ -20,7 +18,7 @@ class DashboardArticleController extends Controller
     public function index()
     {
         return Inertia::render('Dashboard/index', [
-            'articles' => Article::where('user_id', auth()->user()->id)->latest()->paginate(10),
+            'articles' => Article::where('user_id', auth()->user()->id)->latest()->get(),
             'categories' => Category::all()
         ]);
     }
@@ -118,7 +116,7 @@ class DashboardArticleController extends Controller
         if (!$same_title) $validated_data['slug'] = strtolower(Str::slug($request->title));
 
         if ($has_image) {
-            Storage::delete($article->image);
+            if (!is_null($article->image)) Storage::delete($article->image);
             $validated_data['image'] = $has_image->store('articles-image');
         }
 
@@ -143,8 +141,9 @@ class DashboardArticleController extends Controller
         $article = Article::find($article->id);
 
         if (!is_null($article)) {
+            if (!is_null($article->image)) Storage::delete($article->image);
+
             $article->delete();
-            Storage::delete($article->image);
             return Redirect::back()->with('message', 'Artikel berhasil dihapus');
         } else
             return Redirect::back()->with('message', 'Artikel gagal dihapus');

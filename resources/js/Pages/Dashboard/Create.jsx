@@ -34,7 +34,11 @@ const Create = (props) => {
   }, []);
 
   return (
-    <Authenticated auth={props.auth} errors={props.errors} title="Buat Artikel">
+    <Authenticated
+      auth={props.auth}
+      errors={props.errors}
+      title="Create Article"
+    >
       <div className="p-6 lg:p-7">
         <div className="mb-4">
           <h2 className="text-2xl text-center md:text-3xl mb-3">
