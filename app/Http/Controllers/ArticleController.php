@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\{Article, Category};
-use Inertia\Inertia;
+use App\Helpers\RenderInertia;
 
 class ArticleController extends Controller
 {
+    use RenderInertia;
+
     public function index()
     {
         $articles = Article::latest()->paginate(8);
-        return Inertia::render('Articles/index', [
+        return $this->render('Articles/index', [
             'articles' => $articles,
             'categories' => Category::all()
         ]);
@@ -18,7 +20,7 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        return Inertia::render('Articles/Article', [
+        return $this->render('Articles/Article', [
             'article' => $article->load(['comments', 'likes']),
             'categories' => Category::all(),
         ]);

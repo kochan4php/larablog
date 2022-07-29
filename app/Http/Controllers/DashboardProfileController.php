@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Inertia\Inertia;
+use App\Helpers\RenderInertia;
 
 class DashboardProfileController extends Controller
 {
+    use RenderInertia;
+
     public function index()
     {
-        return Inertia::render('Profile/index', [
+        return $this->render('Profile/index', [
             'user' => auth()->user()
         ]);
     }

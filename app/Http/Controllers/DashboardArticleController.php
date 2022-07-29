@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
 use App\Models\{Article, Category};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Redirect, Storage};
 use Illuminate\Support\Str;
+use App\Helpers\RenderInertia;
 
 class DashboardArticleController extends Controller
 {
+    use RenderInertia;
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +19,7 @@ class DashboardArticleController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Dashboard/index', [
+        return $this->render('Dashboard/index', [
             'articles' => Article::where('user_id', auth()->user()->id)->latest()->get(),
             'categories' => Category::all()
         ]);
@@ -30,7 +32,7 @@ class DashboardArticleController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Dashboard/Create', [
+        return $this->render('Dashboard/Create', [
             'categories' => Category::all()
         ]);
     }
@@ -70,7 +72,7 @@ class DashboardArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return Inertia::render('Dashboard/Show', [
+        return $this->render('Dashboard/Show', [
             'article' => $article->load('comments')
         ]);
     }
@@ -83,7 +85,7 @@ class DashboardArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return Inertia::render('Dashboard/Edit', [
+        return $this->render('Dashboard/Edit', [
             'article' => $article,
             'author' => $article->user,
             'categories' => Category::all()
