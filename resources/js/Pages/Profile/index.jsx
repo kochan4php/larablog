@@ -41,17 +41,7 @@ const Profile = (props) => {
     <Authenticated auth={props.auth} errors={props.errors} title="My Profile">
       <div className="p-6 lg:p-7">
         <div className="mb-5">
-          <div className="flex justify-between w-full">
-            <h2 className="text-2xl md:text-3xl mb-3">Profil Saya</h2>
-            <Link
-              className="btn btn-secondary rounded btn-sm border-none outline-none flex capitalize items-center justify-center"
-              as="button"
-              onClick={back}
-            >
-              <FeatherIcon icon="chevrons-left" size={20} />
-              <span>&nbsp;Kembali&nbsp;</span>
-            </Link>
-          </div>
+          <h2 className="text-2xl text-center md:text-3xl mb-3">Profil Saya</h2>
           <hr className="border-t border-t-slate-300" />
         </div>
         <div className="mb-5">

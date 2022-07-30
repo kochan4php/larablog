@@ -2,10 +2,21 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { RenderIfTrue } from "@/utils";
+import { RenderIfTrue, For } from "@/utils";
 import { Head, Link } from "@inertiajs/inertia-react";
 import FeatherIcon from "feather-icons-react";
 import { useState } from "react";
+import createRoute from "@/Helpers/createRoute";
+
+const routeDashboard = [
+  createRoute(route("dashboard"), "get", "My Dashboard"),
+  createRoute(route("dashboard"), "get", "Notification"),
+  createRoute(route("dashboard"), "get", "Saved Articles"),
+  createRoute("/dashboard/articles/create", "get", "Create Articles"),
+  createRoute(route("dashboard"), "get", "Statistics"),
+  createRoute("/dashboard/profile", "get", "Settings"),
+  createRoute(route("logout"), "post", "Log Out"),
+];
 
 const Authenticated = ({ auth, children, title, flash }) => {
   const [showingNavigationDropdown, setShowingNavigationDropdown] =
@@ -35,28 +46,12 @@ const Authenticated = ({ auth, children, title, flash }) => {
                       route().current("articles.edit")
                     }
                   >
-                    Kelola Artikel
-                  </NavLink>
-                </div>
-                <div className="hidden space-x-8 md:-my-px md:ml-10 md:flex">
-                  <NavLink
-                    href="/dashboard/articles/create"
-                    active={route().current("articles.create")}
-                  >
-                    Buat Artikel
-                  </NavLink>
-                </div>
-                <div className="hidden space-x-8 md:-my-px md:ml-10 md:flex">
-                  <NavLink
-                    href="/dashboard/profile"
-                    active={route().current("profile")}
-                  >
-                    Profil Saya
+                    Dashboard
                   </NavLink>
                 </div>
               </div>
               <div className="hidden md:flex md:items-center md:ml-6">
-                <div className="ml-3 relative hover:bg-red-700 rounded-md">
+                <div className="ml-3 relative hover:bg-red-800 rounded-tr-xl rounded-bl-xl transition-all duration-200">
                   <Dropdown>
                     <Dropdown.Trigger>
                       <span className="inline-flex rounded-md">
@@ -81,13 +76,19 @@ const Authenticated = ({ auth, children, title, flash }) => {
                       </span>
                     </Dropdown.Trigger>
                     <Dropdown.Content>
-                      <Dropdown.Link
-                        href={route("logout")}
-                        method="post"
-                        as="button"
-                      >
-                        Keluar
-                      </Dropdown.Link>
+                      <For
+                        each={routeDashboard}
+                        render={({ path, method, name }, index) => (
+                          <Dropdown.Link
+                            href={path}
+                            method={method}
+                            as="button"
+                            key={index}
+                          >
+                            {name}
+                          </Dropdown.Link>
+                        )}
+                      />
                     </Dropdown.Content>
                   </Dropdown>
                 </div>
@@ -136,35 +137,23 @@ const Authenticated = ({ auth, children, title, flash }) => {
             }
           >
             <div className="py-2">
-              <ResponsiveNavLink
-                href={route("dashboard")}
-                active={
-                  route().current("dashboard") ||
-                  route().current("articles.show") ||
-                  route().current("articles.edit")
-                }
-              >
-                Kelola Artikel
-              </ResponsiveNavLink>
-              <ResponsiveNavLink
-                href={"/dashboard/articles/create"}
-                active={route().current("articles.create")}
-              >
-                Buat Artikel
-              </ResponsiveNavLink>
-              <ResponsiveNavLink
-                href={"/dashboard/profile"}
-                active={route().current("profile")}
-              >
-                Profil Saya
-              </ResponsiveNavLink>
-              <ResponsiveNavLink
-                method="post"
-                href={route("logout")}
-                as="button"
-              >
-                Keluar
-              </ResponsiveNavLink>
+              <For
+                each={routeDashboard}
+                render={({ path, method, name }, index) => (
+                  <ResponsiveNavLink
+                    href={path}
+                    // active={
+                    //   route().current("dashboard") ||
+                    //   route().current("articles.show") ||
+                    //   route().current("articles.edit")
+                    // }
+                    method={method}
+                    key={index}
+                  >
+                    {name}
+                  </ResponsiveNavLink>
+                )}
+              />
             </div>
           </div>
         </nav>
