@@ -6,6 +6,7 @@ const ResponsiveNavLink = ({
   href,
   active = false,
   children,
+  className,
 }) => (
   <Link
     method={method}
@@ -15,7 +16,7 @@ const ResponsiveNavLink = ({
       active
         ? "border-indigo-400 bg-slate-800 focus:outline-none focus:text-indigo-800 focus:bg-slate-800 focus:border-indigo-700"
         : "border-transparent hover:bg-slate-800 hover:border-gray-300"
-    } font-medium focus:outline-none transition duration-150 ease-in-out text-lg`}
+    } font-medium focus:outline-none transition duration-150 ease-in-out text-lg ${className}`}
   >
     {children}
   </Link>

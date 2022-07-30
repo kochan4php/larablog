@@ -29,7 +29,7 @@ const Index = (props) => {
               as="button"
               href="/dashboard/articles/create"
             >
-              <FeatherIcon icon="plus-circle" size={20} />
+              <FeatherIcon icon="plus" size={20} />
               <span>&nbsp;Buat artikel&nbsp;</span>
             </Link>
           </div>

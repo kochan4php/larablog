@@ -9,13 +9,18 @@ import FeatherIcon from "feather-icons-react";
 import { useState } from "react";
 
 const routeDashboard = [
-  createRoute(route("dashboard"), "get", "My Dashboard"),
-  createRoute(route("dashboard"), "get", "Notification"),
-  createRoute(route("dashboard"), "get", "Saved Articles"),
-  createRoute("/dashboard/articles/create", "get", "Create Article"),
-  createRoute(route("dashboard"), "get", "Statistics"),
-  createRoute("/dashboard/profile", "get", "Settings"),
-  createRoute(route("logout"), "post", "Log Out"),
+  createRoute(route("dashboard"), "get", "My Dashboard", "home"),
+  createRoute(route("dashboard"), "get", "Notification", "bell"),
+  createRoute(route("dashboard"), "get", "Saved Articles", "bookmark"),
+  createRoute(
+    "/dashboard/articles/create",
+    "get",
+    "Create Article",
+    "plus-square"
+  ),
+  createRoute(route("dashboard"), "get", "Statistics", "bar-chart"),
+  createRoute("/dashboard/profile", "get", "Settings", "settings"),
+  createRoute(route("logout"), "post", "Log Out", "log-out"),
 ];
 
 const Authenticated = ({ auth, children, title, flash }) => {
@@ -57,11 +62,12 @@ const Authenticated = ({ auth, children, title, flash }) => {
                       <span className="inline-flex rounded-md">
                         <button
                           type="button"
-                          className="inline-flex items-center px-3 py-2 border border-transparent text-base leading-4 font-medium rounded-md focus:outline-none transition ease-in-out duration-150"
+                          className="inline-flex items-center px-3 py-2 border border-transparent text-base leading-4 font-medium rounded-md focus:outline-none transition ease-in-out duration-150 gap-2"
                         >
+                          <FeatherIcon icon="user" size={20} />
                           {auth.user.name}
                           <svg
-                            className="ml-2 -mr-0.5 h-4 w-4 fill-current"
+                            className="h-4 w-4 fill-current"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 20 20"
                             fill="currentColor"
@@ -78,14 +84,16 @@ const Authenticated = ({ auth, children, title, flash }) => {
                     <Dropdown.Content>
                       <For
                         each={routeDashboard}
-                        render={({ path, method, name }, index) => (
+                        render={({ path, method, name, icon }, index) => (
                           <Dropdown.Link
                             href={path}
                             method={method}
                             as="button"
                             key={index}
+                            className="flex items-center gap-3"
                           >
-                            {name}
+                            <FeatherIcon icon={icon} size={20} />
+                            <div>{name}</div>
                           </Dropdown.Link>
                         )}
                       />
@@ -139,18 +147,15 @@ const Authenticated = ({ auth, children, title, flash }) => {
             <div className="py-2">
               <For
                 each={routeDashboard}
-                render={({ path, method, name }, index) => (
+                render={({ path, method, name, icon }, index) => (
                   <ResponsiveNavLink
                     href={path}
-                    // active={
-                    //   route().current("dashboard") ||
-                    //   route().current("articles.show") ||
-                    //   route().current("articles.edit")
-                    // }
                     method={method}
                     key={index}
+                    className="flex items-center gap-3"
                   >
-                    {name}
+                    <FeatherIcon icon={icon} size={20} />
+                    <div>{name}</div>
                   </ResponsiveNavLink>
                 )}
               />
