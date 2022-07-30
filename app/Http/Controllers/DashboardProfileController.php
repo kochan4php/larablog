@@ -11,9 +11,7 @@ class DashboardProfileController extends Controller
 
     public function index()
     {
-        return $this->render('Profile/index', [
-            'user' => auth()->user()
-        ]);
+        return $this->render('Profile/index');
     }
 
     public function change_profile(Request $request)
