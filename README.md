@@ -6,7 +6,6 @@
 - [Laravel](https://laravel.com) : Version 9.19.0
 - [Tailwind CSS](https://tailwindcss.com) : Version 3.1.0
 - [React.js](https://reactjs.org) : Version 17.0.2
-- [Inertia.js](https://inertiajs.com) : Version 1.4.2
 
 ## Cara Instalasi
 
@@ -20,6 +19,7 @@
 - Aplikasi Laravel bisa diakses menggunakan url [http://localhost:8000](http://localhost:8000)
 
 ## Semoga kalian suka :D
+
 <p align="center">
 <img src="https://user-images.githubusercontent.com/69864986/179020715-d4d9fa7a-6ee9-48fe-a388-5185b96ae909.gif">
 </p>
