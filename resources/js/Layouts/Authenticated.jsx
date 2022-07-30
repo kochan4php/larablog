@@ -2,17 +2,17 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { RenderIfTrue, For } from "@/utils";
+import createRoute from "@/Helpers/createRoute";
+import { For, RenderIfTrue } from "@/utils";
 import { Head, Link } from "@inertiajs/inertia-react";
 import FeatherIcon from "feather-icons-react";
 import { useState } from "react";
-import createRoute from "@/Helpers/createRoute";
 
 const routeDashboard = [
   createRoute(route("dashboard"), "get", "My Dashboard"),
   createRoute(route("dashboard"), "get", "Notification"),
   createRoute(route("dashboard"), "get", "Saved Articles"),
-  createRoute("/dashboard/articles/create", "get", "Create Articles"),
+  createRoute("/dashboard/articles/create", "get", "Create Article"),
   createRoute(route("dashboard"), "get", "Statistics"),
   createRoute("/dashboard/profile", "get", "Settings"),
   createRoute(route("logout"), "post", "Log Out"),
