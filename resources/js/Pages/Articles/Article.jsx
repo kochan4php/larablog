@@ -46,7 +46,7 @@ const Article = (props) => {
             </div>
             <article>
               <div className="mb-7">
-                <h2 className="text-4xl md:text-5xl font-medium text-center">
+                <h2 className="text-4xl md:text-5xl font-semibold text-center">
                   {article.title}
                 </h2>
               </div>
@@ -95,7 +95,7 @@ const Article = (props) => {
                 </RenderIfFalse>
               </div>
               <div className="mb-12 leading-loose">
-                <p
+                <div
                   className="text-lg md:text-xl text-justify font-medium text-gray-900"
                   dangerouslySetInnerHTML={{ __html: article.content }}
                   style={{ lineHeight: "1.8rem" }}
@@ -147,7 +147,7 @@ const Article = (props) => {
               <section>
                 <div className="mb-7">
                   <h1 className="text-2xl md:text-3xl font-semibold">
-                    Tambahkan Komentar
+                    Tinggalkan Komentar
                   </h1>
                 </div>
                 <RenderIfTrue isTrue={props.auth.user}>
@@ -168,7 +168,7 @@ const Article = (props) => {
                         className="w-full md:w-1/4 flex justify-center"
                         processing={processing}
                       >
-                        Tambah komentar
+                        Kirim
                       </Button>
                     </form>
                   </div>
